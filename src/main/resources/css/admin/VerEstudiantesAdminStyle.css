@@ -1,0 +1,24 @@
+.container{
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
+}
+
+.title{
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}
+
+.tabla{
+    -fx-font-size: 15px;
+    -fx-padding: 0;
+}
+
+.tabla .column-header{
+    -fx-background-color: #4daaf5;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+

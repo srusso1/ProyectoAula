@@ -1,0 +1,44 @@
+.root {
+    -fx-background-color: linear-gradient(to right, #e3f2fd, #ffffff);
+}
+
+.text-field, .password-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #1976d2;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(25,118,210,0.2), 5, 0, 0, 0);
+}
+
+.btnIngresar {
+    -fx-background-color: linear-gradient(to bottom, #2196f3, #1565c0);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+}
+
+.btnIngresar:hover {
+    -fx-background-color: linear-gradient(to bottom, #42a5f5, #1976d2);
+}
+
+.containerLogin {
+    -fx-background-color: white;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.15), 10, 0, 0, 5);
+    -fx-padding: 40;
+}
+
+.titleLogin{
+    -fx-font-weight: bold;
+    -fx-font-style: italic;
+    -fx-letter-spacing: 10;
+}
+
+

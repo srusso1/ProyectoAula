@@ -1,0 +1,51 @@
+.container{
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
+}
+
+.text-field{
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1;
+}
+
+.text-field:focused, .combo-box:focused{
+    -fx-border-width: 1.5;
+    -fx-focus-color: #1976d2;
+    -fx-faint-focus-color: transparent;
+}
+
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #d0d0d0;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-text-fill: #333333;
+    -fx-cursor: hand;
+}
+
+.btnRegistrar{
+    -fx-background-color: #42a5f5;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-padding: 5 10 5 10;
+    -fx-font-size: 14px;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.btnRegistrar:hover{
+    -fx-background-color: linear-gradient(to bottom, #42a5f5, #1976d2);
+    -fx-cursor: hand;
+}
+
+.title{
+    -fx-font-weight: bold;
+    -fx-font-size: 30px;
+}

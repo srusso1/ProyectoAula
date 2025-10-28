@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="CENTER" fillWidth="false" spacing="25.0" stylesheets="@../../css/NoRegistradoStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.login.NoRegistradoController">
+   <children>
+      <Label styleClass="titleRegistro" text="Completar registro docente">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <TextField fx:id="txtID" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Digite su identificacion">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <TextField fx:id="txtUsuario" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Usuario">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="txtPassword" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Contraseña">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </PasswordField>
+      <Button fx:id="btnVerificar" mnemonicParsing="false" onAction="#clickVerificar" prefHeight="41.0" prefWidth="130.0" styleClass="btnRegistrar" text="Verificar" />
+      <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#clickRegistrar" prefHeight="41.0" prefWidth="130.0" styleClass="btnRegistrar" text="Registrar" />
+      <TextFlow fx:id="textoInfo">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="¡IMPORTANTE! ">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Usa credenciales fáciles de recordar.">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Text>
+            <Hyperlink onAction="#clickVolver" style="-fx-border-style: none; -fx-region-border: none;" text="Click para volver">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Hyperlink>
+         </children>
+      </TextFlow>
+   </children>
+   <padding>
+      <Insets bottom="20.0" left="40.0" right="40.0" top="50.0" />
+   </padding>
+</VBox>
