@@ -143,6 +143,8 @@ public class UsuariosDAO {
             }
         }catch(SQLException e){
             Alertas.mostrarError("Error SQL: "+e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
         }
         return false;
     }

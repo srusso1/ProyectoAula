@@ -1,17 +1,17 @@
 package controllers.login;
 
 import data.UsuariosDAO;
+import javafx.animation.ScaleTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.TextFlow;
+import javafx.util.Duration;
 import model.Docente;
-import utils.Alertas;
-import utils.Paths;
-import utils.Validaciones;
-import utils.VistaManager;
+import utils.*;
 
 public class NoRegistradoController {
 
@@ -28,7 +28,7 @@ public class NoRegistradoController {
     private Button btnRegistrar;
 
     @FXML
-    private Button btnVolver;
+    private VBox formNoRegistrado;
 
     @FXML
     private TextFlow textoInfo;
@@ -44,17 +44,11 @@ public class NoRegistradoController {
 
     private final UsuariosDAO usuariosDAO = new UsuariosDAO();
     private Docente docente;
-    private boolean valido = true;
 
     @FXML
     public void initialize() {
-        txtUsuario.setVisible(false);
-        txtPassword.setVisible(false);
-        btnRegistrar.setVisible(false);
-
-        txtUsuario.setManaged(false);
-        txtPassword.setManaged(false);
-        btnRegistrar.setManaged(false);
+        ocultarElementos();
+        Transiciones.cargarDesdeLado(formNoRegistrado, 1.2, 0, 1, -90, 0);
     }
 
     @FXML
@@ -94,34 +88,18 @@ public class NoRegistradoController {
                 if (docente.getUsuario() == null) {
                     Alertas.mostrarInfo("Fue encontrado el registro del docente:\n\n" + docente.toString() + "\n\n" +
                             "Complete el registro ingresando los campos requeridos a continuación");
-
-                    txtUsuario.setVisible(true);
-                    txtPassword.setVisible(true);
-                    txtUsuario.setManaged(true);
-                    txtPassword.setManaged(true);
-
-                    btnVerificar.setVisible(false);
-                    btnVerificar.setManaged(false);
-
-                    btnRegistrar.setVisible(true);
-                    btnRegistrar.setManaged(true);
-
-                    txtID.setDisable(true);
-                    valido = true;
+                    visiblidadElementos();
                 } else {
                     Alertas.mostrarError("Este docente ya tiene registrado su usuario y contraseña\n\n" +
                             docente.toString());
                     limpiarID();
-                    valido = false;
                 }
             } else {
                 Alertas.mostrarError("No hay ningún registro de docente con esa identificación");
                 limpiarID();
-                valido = false;
             }
         } else {
             limpiarID();
-            valido = false;
         }
     }
 
@@ -166,5 +144,30 @@ public class NoRegistradoController {
 
     private void limpiarID() {
         txtID.clear();
+    }
+
+    private void visiblidadElementos(){
+        txtUsuario.setVisible(true);
+        txtPassword.setVisible(true);
+        txtUsuario.setManaged(true);
+        txtPassword.setManaged(true);
+
+        btnVerificar.setVisible(false);
+        btnVerificar.setManaged(false);
+
+        btnRegistrar.setVisible(true);
+        btnRegistrar.setManaged(true);
+
+        txtID.setDisable(true);
+    }
+
+    private void ocultarElementos(){
+        txtUsuario.setVisible(false);
+        txtPassword.setVisible(false);
+        btnRegistrar.setVisible(false);
+
+        txtUsuario.setManaged(false);
+        txtPassword.setManaged(false);
+        btnRegistrar.setManaged(false);
     }
 }

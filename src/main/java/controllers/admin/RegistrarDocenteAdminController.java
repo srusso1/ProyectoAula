@@ -25,13 +25,14 @@ public class RegistrarDocenteAdminController {
     }
 
     private void registrarDocente(){
-        String nombre = null, apellido = null, password = null, user = null;
+        String nombre, apellido;
         long identificacion;
 
         if(!Validaciones.validarIdentificacion(txtID.getText(), "docente")){
             limpiarCampos();
             return;
         }
+
         identificacion = Long.parseLong(txtID.getText());
 
         if(!Validaciones.validarTexto(txtNombre.getText(), "nombre")){

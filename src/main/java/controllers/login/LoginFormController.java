@@ -4,14 +4,12 @@ import application.App;
 import data.UsuariosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import model.Usuario;
-import utils.Alertas;
-import utils.Paths;
-import utils.Validaciones;
-import utils.VistaManager;
+import utils.*;
 
 public class LoginFormController {
 
@@ -31,6 +29,9 @@ public class LoginFormController {
     private TextField txtUsuario;
 
     @FXML
+    private Button btnIngresar;
+
+    @FXML
     void clickIngresar(ActionEvent event) {
         ingresar();
     }
@@ -39,6 +40,7 @@ public class LoginFormController {
     void clickNoRegistrado(ActionEvent event) {
         irNoRegistrado();
     }
+    @FXML
 
     private void irNoRegistrado(){
         if (loginController != null) {
@@ -87,6 +89,7 @@ public class LoginFormController {
             }
         } else {
             Alertas.mostrarError("Usuario o contraseña incorrectos");
+            limpiarCampos();
         }
     }
 

@@ -9,22 +9,26 @@ public class ConexionSQLite {
     private static Connection conexion = null;
     public static Connection conectar(){
         try{
+            String metodoLlamador = Thread.currentThread().getStackTrace()[2].getMethodName();
             conexion = DriverManager.getConnection(URL);
-            System.out.println("Conexion establecida con la base de datos");
+            System.out.println("Conexion establecida con la base de datos - " + metodoLlamador);
         } catch (SQLException e) {
             System.err.println("Error al conectar la base de datos: " + e.getMessage());
         }
         return conexion;
     }
 
-    public static void cerrarConexion(){
-        try{
-            if(conexion != null){
+    public static void cerrarConexion() {
+        try {
+            if (conexion != null) {
                 conexion.close();
-                System.out.println("Se cerro la conexion a la base de datos");
+                String metodoLlamador = Thread.currentThread().getStackTrace()[2].getMethodName();
+
+                System.out.println("Se cerro la conexion a la base de datos - " + metodoLlamador);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             System.err.println("Error al cerrar la base de datos: " + e.getMessage());
         }
     }
+
 }

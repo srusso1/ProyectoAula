@@ -11,24 +11,24 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.scene.text.TextFlow?>
 
-<VBox alignment="CENTER" fillWidth="false" spacing="25.0" stylesheets="@../../css/NoRegistradoStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.login.NoRegistradoController">
+<VBox fx:id="formNoRegistrado" alignment="CENTER" fillWidth="false" spacing="25.0" stylesheets="@../../css/NoRegistradoStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.login.NoRegistradoController">
    <children>
       <Label styleClass="titleRegistro" text="Completar registro docente">
          <font>
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtID" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Digite su identificacion">
+      <TextField fx:id="txtID" prefHeight="60.0" prefWidth="300.0" promptText="Digite su identificacion">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <TextField fx:id="txtUsuario" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Usuario">
+      <TextField fx:id="txtUsuario" prefHeight="60.0" prefWidth="300.0" promptText="Usuario">
          <font>
             <Font size="15.0" />
          </font>
       </TextField>
-      <PasswordField fx:id="txtPassword" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Contraseña">
+      <PasswordField fx:id="txtPassword" prefHeight="60.0" prefWidth="300.0" promptText="Contraseña">
          <font>
             <Font size="15.0" />
          </font>

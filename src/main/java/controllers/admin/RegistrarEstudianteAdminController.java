@@ -33,32 +33,33 @@ public class RegistrarEstudianteAdminController {
 
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
 
-    private void registrarEstudiante() throws IOException {
-        String nombre = null;
-        String apellido = null;
-        long identificacion = 0;
-        int grado = -1;
+    private void registrarEstudiante() {
+        String nombre;
+        String apellido;
+        long identificacion;
+        int grado;
 
-        if(Validaciones.validarIdentificacion(txtID.getText(), "estudiante")){
-            identificacion = Long.parseLong(txtID.getText());
-        }else{
+        if(!Validaciones.validarIdentificacion(txtID.getText(), "estudiante")){
             limpiarCampos();
             return;
         }
 
-        if(Validaciones.validarTexto(txtNombre.getText(), "nombre")){
-            nombre = txtNombre.getText().toUpperCase();
-        }else{
+        identificacion = Long.parseLong(txtID.getText());
+
+        if(!Validaciones.validarTexto(txtNombre.getText(), "nombre")){
             limpiarCampos();
             return;
         }
 
-        if(Validaciones.validarTexto(txtApellido.getText(), "apellido")){
-            apellido = txtApellido.getText().toUpperCase();
-        }else{
+        nombre = txtNombre.getText().toUpperCase();
+
+
+
+        if(!Validaciones.validarTexto(txtApellido.getText(), "apellido")){
             limpiarCampos();
             return;
         }
+        apellido = txtApellido.getText().toUpperCase();
 
         if (comboBox.getSelectionModel().getSelectedItem() == null) {
             Alertas.mostrarError("Es obligatorio seleccionar un grado");
