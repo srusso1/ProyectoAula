@@ -71,7 +71,7 @@ public class LoginFormController {
             limpiarCampos();
             return;
         }
-        password = txtUsuario.getText();
+        password = txtPassword.getText();
 
         UsuariosDAO usuarioDAO = new UsuariosDAO();
         Usuario user = usuarioDAO.validarUsuario(usuario, password);

@@ -18,16 +18,17 @@ public class UsuariosDAO {
         try{
             Connection conexion = ConexionSQLite.conectar();
             PreparedStatement ps = conexion.prepareStatement(query);
-            ps.setString(1, usuario);
-            ps.setString(2, password);
+            ps.setString(1, usuario.trim());
+            ps.setString(2, password.trim());
             ResultSet rs = ps.executeQuery();
-            if(rs.next()){
+            while(rs.next()){
                 long identificacion = rs.getLong("IDENTIFICACION");
                 String nombre = rs.getString("NOMBRE");
                 String apellido = rs.getString("APELLIDO");
                 int rol = rs.getInt("ROL");
                 String user = rs.getString("USUARIO");
                 String pw = rs.getString("PASSWORD");
+
                 switch (rol){
                     case 0:
                         u = new Docente(nombre, apellido, identificacion, user, pw);
@@ -96,7 +97,6 @@ public class UsuariosDAO {
 
     public boolean registrarDocente(Docente docente){
         String query = "INSERT INTO usuarios (IDENTIFICACION, NOMBRE, APELLIDO) VALUES (?, ?, ?)";
-
         try{
             Connection conexion = ConexionSQLite.conectar();
             PreparedStatement ps = conexion.prepareStatement(query);
