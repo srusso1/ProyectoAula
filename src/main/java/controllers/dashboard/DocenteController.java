@@ -5,8 +5,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import utils.Alertas;
 import utils.Paths;
+import utils.Transiciones;
 import utils.VistaManager;
 
 public class DocenteController {
@@ -16,6 +18,8 @@ public class DocenteController {
 
     @FXML
     private BorderPane rootPane;
+
+
 
     @FXML
     void ClickVerCurso(ActionEvent event) {
@@ -29,7 +33,7 @@ public class DocenteController {
 
     @FXML
     void clickInicio(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.DOCENTE_INICIO, rootPane);
     }
 
     @FXML
@@ -55,6 +59,7 @@ public class DocenteController {
     @FXML
     void initialize(){
         VistaManager.cargarVista(Paths.DOCENTE_INICIO, rootPane);
+
     }
 
 
