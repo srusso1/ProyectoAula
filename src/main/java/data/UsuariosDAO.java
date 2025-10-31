@@ -38,7 +38,6 @@ public class UsuariosDAO {
                         break;
                 }
             }
-
             ps.close();
             rs.close();
         } catch (SQLException e) {

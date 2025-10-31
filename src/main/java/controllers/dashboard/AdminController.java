@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import utils.Alertas;
 import utils.Paths;
+import utils.VistaManager;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -24,7 +25,7 @@ public class AdminController {
 
     @FXML
     void clickInicio(ActionEvent event) {
-        cargarVista(Paths.ADMIN_INICIO);
+        VistaManager.cargarVista(Paths.ADMIN_INICIO, rootPane);
 
     }
 
@@ -42,17 +43,17 @@ public class AdminController {
 
     @FXML
     void clickVerEstudiantes(ActionEvent event) {
-        cargarVista(Paths.VER_ESTUDIANTES_ADMIN);
+        VistaManager.cargarVista(Paths.VER_ESTUDIANTES_ADMIN, rootPane);
     }
 
     @FXML
     void clickRegistrarEstudiante(ActionEvent event) {
-        cargarVista(Paths.REGISTRO_ESTUDIANTE_ADMIN);
+        VistaManager.cargarVista(Paths.REGISTRO_ESTUDIANTE_ADMIN, rootPane);
     }
 
     @FXML
     void clickRegistrarDocente(ActionEvent event) {
-        cargarVista(Paths.REGISTRAR_DOCENTE_ADMIN);
+        VistaManager.cargarVista(Paths.REGISTRAR_DOCENTE_ADMIN, rootPane);
     }
 
     @FXML
@@ -62,18 +63,8 @@ public class AdminController {
 
     @FXML
     void initialize(){
-        cargarVista(Paths.ADMIN_INICIO);
+        VistaManager.cargarVista(Paths.ADMIN_INICIO, rootPane);
     }
-
-    private void cargarVista(String rutaFXML) {
-        try {
-            Node vista = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(rutaFXML)));
-            rootPane.setCenter(vista);
-        } catch (IOException e) {
-            System.out.println(("No se pudo cargar la vista: " + e.getMessage()));
-        }
-    }
-
 
 
 }

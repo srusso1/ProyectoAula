@@ -1,8 +1,10 @@
 package utils;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 import java.util.Objects;
@@ -29,6 +31,15 @@ public class VistaManager {
         } catch (IOException e) {
             System.out.println("No se pudo cargar la vista: " + e.getMessage());
             return null;
+        }
+    }
+
+    public static void cargarVista(String rutaFXML, BorderPane principal) {
+        try {
+            Node vista = FXMLLoader.load(Objects.requireNonNull(VistaManager.class.getResource(rutaFXML)));
+            principal.setCenter(vista);
+        } catch (IOException e) {
+            System.out.println(("No se pudo cargar la vista: " + e.getMessage()));
         }
     }
 

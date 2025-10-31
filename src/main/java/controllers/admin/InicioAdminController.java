@@ -6,6 +6,7 @@ import data.EstudiantesDAO;
 import data.UsuariosDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import utils.Extras;
 
 
 import java.time.LocalDate;
@@ -35,24 +36,10 @@ public class InicioAdminController {
 
     @FXML
     void initialize(){
-        mostrarFechaHoy();
-        mostrarDatosUsuario();
+        Extras.mostrarFechaHoy(lbFecha);
+        Extras.textoBienvenida(txtBienvenida);
         mostrarCantidadEstudiantes();
         mostrarCantidadDocentes();
-    }
-
-    private void mostrarFechaHoy(){
-        LocalDate fechaHoy = LocalDate.now();
-        DateTimeFormatter formatoFecha = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        Locale locale = new Locale("es", "ES");
-        String diaSemana = fechaHoy.getDayOfWeek().getDisplayName(TextStyle.FULL, locale).toUpperCase();
-
-        lbFecha.setText("Fecha actual: " + fechaHoy.format(formatoFecha) + " - " + diaSemana);
-    }
-
-    private void mostrarDatosUsuario(){
-        txtBienvenida.setText("Bienvenido ADMINISTRADOR, " + App.usuarioLogueado.getNombre() + " " + App.usuarioLogueado.getApellido() );
     }
 
     private void mostrarCantidadDocentes(){

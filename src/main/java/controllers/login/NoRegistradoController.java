@@ -86,12 +86,12 @@ public class NoRegistradoController {
 
             if (docente != null) {
                 if (docente.getUsuario() == null) {
-                    Alertas.mostrarInfo("Fue encontrado el registro del docente:\n\n" + docente.toString() + "\n\n" +
-                            "Complete el registro ingresando los campos requeridos a continuación");
+                    Alertas.mostrarInfo("Docente " + docente.getNombre() + " "+ docente.getApellido() +
+                            " complete el registro ingresando los campos requeridos a continuación");
                     visiblidadElementos();
                 } else {
-                    Alertas.mostrarError("Este docente ya tiene registrado su usuario y contraseña\n\n" +
-                            docente.toString());
+                    Alertas.mostrarError("El docente " + docente.getNombre() + " "+ docente.getApellido() +
+                            " ya tiene registrado su usuario y contraseña");
                     limpiarID();
                 }
             } else {
@@ -125,7 +125,7 @@ public class NoRegistradoController {
         docente.setPassword(txtPassword.getText());
 
         if (usuariosDAO.agregarUsuarioPassword(docente.getIdentificacion(), docente)) {
-            Alertas.mostrarExito("Se completó el registro del docente, ya puede ingresar usando el 'usuario' y 'contraseña' registrada");
+            Alertas.mostrarInfo("Se completo el registo con éxito, puede ingresar al software utilizando las credenciales registradas");
             limpiarTodo();
             volver();
         } else {

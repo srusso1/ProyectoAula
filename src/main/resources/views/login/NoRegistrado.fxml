@@ -18,7 +18,7 @@
             <Font name="System Italic" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="txtID" prefHeight="60.0" prefWidth="300.0" promptText="Digite su identificacion">
+      <TextField fx:id="txtID" focusTraversable="false" prefHeight="60.0" prefWidth="300.0" promptText="Digite su identificacion">
          <font>
             <Font size="15.0" />
          </font>
