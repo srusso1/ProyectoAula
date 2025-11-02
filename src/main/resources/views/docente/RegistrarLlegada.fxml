@@ -1,14 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.docente.RegistrarLlegadaController"
-            prefHeight="400.0" prefWidth="600.0">
 
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@../../css/docente/RegistrarLlegadaStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.docente.RegistrarLlegadaController">
+   <children>
+      <StackPane layoutX="350.0" layoutY="215.0" prefHeight="150.0" prefWidth="200.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <VBox fx:id="contenedor" alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" spacing="25.0">
+               <children>
+                  <HBox alignment="CENTER_LEFT" prefHeight="68.0" prefWidth="689.0" spacing="25.0">
+                     <children>
+                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/HugeiconsEditUser02.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Registrar llegada del estudiante">
+                           <font>
+                              <Font size="26.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <Separator prefWidth="200.0" />
+                  <HBox alignment="CENTER" prefHeight="61.0" prefWidth="689.0" spacing="25.0">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <TextField fx:id="txtID" prefHeight="40.0" prefWidth="282.0" promptText="Identificación del estudiante">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </TextField>
+                        <Button mnemonicParsing="false" onAction="#clickBuscar" prefHeight="34.0" prefWidth="97.0" styleClass="botones" text="Buscar" />
+                     </children>
+                  </HBox>
+                  <VBox fx:id="infoEstudiante" fillWidth="false" maxWidth="650.0" spacing="25.0" styleClass="infoEstudiante">
+                     <children>
+                        <Label fx:id="infoID" text="&gt; La identificacion num corresponde al siguiente estudiante:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="nombre" text="Nombre completo: ">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="grado" text="Grado:">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#clickRegistrar" prefHeight="40.0" prefWidth="193.0" text="Registrar llegada">
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <styleClass>
+                        <String fx:value="botones" />
+                        <String fx:value="btnRegistrar" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </VBox>
+         </children>
+      </StackPane>
+   </children>
 </AnchorPane>

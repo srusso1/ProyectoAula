@@ -38,7 +38,7 @@ public class DocenteController {
 
     @FXML
     void clickRegistrarLlegada(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.DOCENTE_REGISTRAR_LLEGADA, rootPane);
     }
 
     @FXML
