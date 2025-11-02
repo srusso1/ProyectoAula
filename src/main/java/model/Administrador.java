@@ -4,11 +4,20 @@ public class Administrador extends Usuario {
     private String usuario;
     private String password;
     private tipoRol rol;
+
     public Administrador(String nombre, String apellido, long identificacion, String usuario, String password) {
         super(nombre,apellido, identificacion);
         this.usuario = usuario;
         this.password = password;
         this.rol = tipoRol.ADMINISTRADOR;
+    }
+
+    public Administrador(int ID, String nombre, String apellido, long identificacion, String usuario, String password) {
+        super(nombre,apellido, identificacion);
+        this.usuario = usuario;
+        this.password = password;
+        this.rol = tipoRol.ADMINISTRADOR;
+        this.ID = ID;
     }
 
     public String getUsuario() {

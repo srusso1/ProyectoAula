@@ -1,0 +1,79 @@
+.background{
+    -fx-background-color: #f9fafc;
+}
+
+.bgInicio{
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
+}
+
+.root {
+    -fx-background-color: #f8f9fa;
+    -fx-font-family: "Segoe UI";
+}
+
+.titulo-config {
+    -fx-font-size: 24px;
+    -fx-text-fill: #333;
+    -fx-font-weight: bold;
+}
+
+.label-normal {
+    -fx-font-size: 15px;
+    -fx-text-fill: #444;
+}
+
+.btn-guardar {
+    -fx-background-color: #0078d7;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 6 15;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.btn-guardar:hover {
+    -fx-background-color: #005a9e;
+}
+
+.hora-actual {
+    -fx-font-size: 16px;
+    -fx-text-fill: #0078d7;
+    -fx-font-weight: bold;
+}
+
+.spinner {
+    -fx-background-color: white;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5;
+    -fx-background-radius: 5;
+}
+
+/* Campo de texto dentro del spinner */
+.spinner .text-field {
+    -fx-background-color: transparent;
+    -fx-text-fill: #333333;
+    -fx-font-weight: 500;
+    -fx-alignment: CENTER;
+}
+
+/* Botones de incremento/decremento */
+.spinner .increment-arrow-button,
+.spinner .decrement-arrow-button {
+    -fx-background-color: transparent;
+    -fx-padding: 2;
+}
+
+.spinner .increment-arrow-button:hover,
+.spinner .decrement-arrow-button:hover {
+    -fx-background-color: #e6e6e6;
+    -fx-cursor: hand;
+}
+
+/* Color de las flechas */
+.spinner .increment-arrow,
+.spinner .decrement-arrow {
+    -fx-background-color: #555555;
+}

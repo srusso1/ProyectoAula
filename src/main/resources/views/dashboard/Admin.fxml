@@ -42,6 +42,7 @@
             <Button mnemonicParsing="false" onAction="#clickRegistrarDocente" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Registrar docente" />
             <Button mnemonicParsing="false" onAction="#clickVerEstudiantes" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Ver estudiantes" />
             <Button mnemonicParsing="false" onAction="#clickInformes" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Informes" />
+            <Button mnemonicParsing="false" onAction="#clickConfiguracion" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Configuracion" />
          </children>
          <padding>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

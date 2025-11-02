@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@../../css/admin/ConfiguracionStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.ConfiguracionController">
+
+    <children>
+        <StackPane layoutX="350.0" layoutY="203.0" prefHeight="150.0" prefWidth="200.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+            <children>
+                <VBox alignment="TOP_CENTER" prefWidth="800" spacing="20">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <children>
+                                <ImageView fitHeight="40" fitWidth="40" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/Config.png" />
+                                    </image>
+                                </ImageView>
+                                <Label styleClass="titulo-config" text="Configuración general del software" />
+                            </children>
+                        </HBox>
+
+                        <Separator prefWidth="700" />
+
+                        <HBox alignment="CENTER_LEFT" spacing="15">
+                            <children>
+                                <Label styleClass="label-normal" text="Hora límite de llegada:" />
+                                <Spinner fx:id="spinnerHora" prefWidth="120" />
+                                <Button fx:id="btnGuardar" onAction="#clickEstablecer" styleClass="btn-guardar" text="Establecer">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font></Button>
+                            </children>
+                        </HBox>
+
+                        <HBox alignment="CENTER_LEFT" spacing="10">
+                            <children>
+                        <Text fill="#f50505" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Text>
+                                <Label styleClass="label-normal" text="Hora establecida actualmente:" />
+                                <Label fx:id="lblHoraActual" styleClass="hora-actual" text="08:45 AM" />
+                            </children>
+                        </HBox>
+                    </children>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+                </VBox>
+
+            </children>
+        </StackPane>
+    </children>
+</AnchorPane>

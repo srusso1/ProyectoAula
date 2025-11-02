@@ -7,6 +7,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.Objects;
 
 public class VistaManager {
@@ -36,10 +37,19 @@ public class VistaManager {
 
     public static void cargarVista(String rutaFXML, BorderPane principal) {
         try {
-            Node vista = FXMLLoader.load(Objects.requireNonNull(VistaManager.class.getResource(rutaFXML)));
+            URL recurso = VistaManager.class.getResource(rutaFXML);
+            if (recurso == null) {
+                System.err.println("ERROR: No se encontró el archivo FXML en la ruta: " + rutaFXML);
+                System.err.println("Verifica que el archivo existe en src/main/resources" + rutaFXML);
+                return;
+            }
+
+            Node vista = FXMLLoader.load(recurso);
             principal.setCenter(vista);
         } catch (IOException e) {
-            System.out.println(("No se pudo cargar la vista: " + e.getMessage()));
+            System.err.println("ERROR: No se pudo cargar la vista desde: " + rutaFXML);
+            System.err.println("Detalles: " + e.getMessage());
+            e.printStackTrace();
         }
     }
 

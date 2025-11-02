@@ -87,6 +87,7 @@ public class LoginFormController {
             } else {
                 App.setRoot(Paths.DOCENTE_VIEW);
             }
+            App.usuarioLogueado.setID(user.getID());
         } else {
             Alertas.mostrarError("Usuario o contraseña incorrectos");
             limpiarCampos();

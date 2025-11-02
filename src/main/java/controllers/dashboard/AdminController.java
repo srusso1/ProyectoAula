@@ -62,6 +62,11 @@ public class AdminController {
     }
 
     @FXML
+    void clickConfiguracion(ActionEvent event) {
+        VistaManager.cargarVista(Paths.CONFIGURACION_ADMIN, rootPane);
+    }
+
+    @FXML
     void initialize(){
         VistaManager.cargarVista(Paths.ADMIN_INICIO, rootPane);
     }

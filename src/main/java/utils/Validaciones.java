@@ -7,10 +7,10 @@ import model.Estudiante;
 
 public class Validaciones {
 
-    public static final int CARACTERES_PASSWORD = 8;
-    public static final int CARACTERES_USUARIO = 5;
-    public static final int MAX_CARACTERES = 30;
-    public static final int MIN_CARACTERES = 3;
+    private static final int CARACTERES_PASSWORD = 8;
+    private static final int CARACTERES_USUARIO = 5;
+    private static final int MAX_CARACTERES = 30;
+    private static final int MIN_CARACTERES = 3;
 
     public static boolean validarTexto(String texto, String caso) {
         caso = caso.toUpperCase();

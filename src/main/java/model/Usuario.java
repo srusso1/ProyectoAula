@@ -4,6 +4,7 @@ public abstract class Usuario {
     protected String nombre;
     protected String apellido;
     protected long identificacion;
+    protected int ID;
 
     public Usuario(String nombre, String apellido, long identificacion) {
         this.nombre = nombre;
@@ -11,6 +12,12 @@ public abstract class Usuario {
         this.identificacion = identificacion;
     }
 
+    public int getID() {
+        return ID;
+    }
+    public void setID(int ID) {
+        this.ID = ID;
+    }
     public String getNombre() {
         return nombre;
     }

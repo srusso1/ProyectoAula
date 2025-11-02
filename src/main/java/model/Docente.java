@@ -12,6 +12,14 @@ public class Docente extends Usuario{
         this.rol = tipoRol.DOCENTE;
     }
 
+    public Docente(int ID, String nombre, String apellido, long identificacion, String usuario, String password) {
+        super(nombre, apellido, identificacion);
+        this.usuario = usuario;
+        this.password = password;
+        this.rol = tipoRol.DOCENTE;
+        this.ID = ID;
+    }
+
 
     public Docente(String nombre, String apellido, long identificacion){
         super(nombre, apellido, identificacion);

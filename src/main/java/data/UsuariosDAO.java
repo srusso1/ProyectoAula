@@ -22,6 +22,7 @@ public class UsuariosDAO {
             ps.setString(2, password.trim());
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                int id = rs.getInt("ID");
                 long identificacion = rs.getLong("IDENTIFICACION");
                 String nombre = rs.getString("NOMBRE");
                 String apellido = rs.getString("APELLIDO");
@@ -31,10 +32,10 @@ public class UsuariosDAO {
 
                 switch (rol){
                     case 0:
-                        u = new Docente(nombre, apellido, identificacion, user, pw);
+                        u = new Docente(id, nombre, apellido, identificacion, user, pw);
                         break;
                     case 1:
-                        u = new Administrador(nombre, apellido, identificacion, user, pw);
+                        u = new Administrador(id, nombre, apellido, identificacion, user, pw);
                         break;
                 }
             }

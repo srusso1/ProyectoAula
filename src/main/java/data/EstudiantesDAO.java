@@ -43,11 +43,12 @@ public class EstudiantesDAO {
             ps.setLong(1, identificacion);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
+                int id = rs.getInt("ID");
                 long identi = rs.getLong("IDENTIFICACION");
                 String nombre = rs.getString("NOMBRE");
                 String apellido = rs.getString("APELLIDO");
                 int grado = rs.getInt("GRADO");
-                estudiante = new Estudiante(nombre,apellido,identi,grado);
+                estudiante = new Estudiante(id, nombre,apellido,identi,grado);
             }
         }catch(SQLException e){
             Alertas.mostrarError("Error SQL: "+e.getMessage());

@@ -8,6 +8,12 @@ public class Estudiante extends Usuario {
         this.grado = grado;
     }
 
+    public Estudiante(int ID, String nombre, String apellido, long identificacion, int grado) {
+        super(nombre, apellido, identificacion);
+        this.grado = grado;
+        this.ID = ID;
+    }
+
     public int getGrado() {
         return grado;
     }
