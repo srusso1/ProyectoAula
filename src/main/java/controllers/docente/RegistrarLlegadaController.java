@@ -57,7 +57,7 @@ public class RegistrarLlegadaController {
 
     @FXML
     void initialize() {
-        Transiciones.cargarDesdeAbajo(contenedor, 1.2, 0, 1, 90, 0);
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
         ocultarElementos();
     }
 

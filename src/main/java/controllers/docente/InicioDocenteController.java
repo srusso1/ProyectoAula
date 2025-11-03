@@ -21,6 +21,6 @@ public class InicioDocenteController {
     void initialize(){
         Extras.mostrarFechaHoy(txtFecha);
         Extras.textoBienvenida(txtBienvenida);
-        Transiciones.cargarDesdeAbajo(contenedor, 1.2, 0, 1, 90, 0);
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 }
