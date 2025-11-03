@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="1100.0" stylesheets="@../../css/AdminStyle.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.dashboard.DocenteController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1300.0" stylesheets="@../../css/login/AdminStyle.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.dashboard.DocenteController">
    <left>
       <VBox alignment="CENTER_LEFT" prefHeight="623.0" prefWidth="218.0" spacing="20.0" styleClass="containerOptions" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
             </Label>
             <Separator prefWidth="200.0" />
             <Button mnemonicParsing="false" onAction="#clickInicio" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Inicio" />
-            <Button mnemonicParsing="false" onAction="#clickRegistrarLlegada" prefHeight="35.0" prefWidth="190.0" styleClass="btn" text="Registrar llegada" />
+            <Button mnemonicParsing="false" onAction="#clickRegistrarLlegada" prefHeight="35.0" prefWidth="190.0" styleClass="btn" text="Registrar ingreso" />
             <Button mnemonicParsing="false" onAction="#clickRevisarEstudiante" prefHeight="35.0" prefWidth="196.0" styleClass="btn" text="Consultar estudiante" />
             <Button mnemonicParsing="false" onAction="#ClickVerCurso" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Ver curso" />
             <Button mnemonicParsing="false" onAction="#clickEstadisticas" prefHeight="35.0" prefWidth="170.0" styleClass="btn" text="Estadisticas" />

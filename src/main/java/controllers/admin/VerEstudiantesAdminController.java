@@ -30,15 +30,15 @@ public class VerEstudiantesAdminController {
     private TableView<Estudiante> tabla;
     static EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
 
-    private static final ArrayList<Estudiante> estudiantes = estudiantesDAO.mostrarEstudiantes();
+    private final ArrayList<Estudiante> estudiantes = estudiantesDAO.listaEstudiantesIngresos();
 
     @FXML
     public void initialize() {
+        identificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
         nombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         grado.setCellValueFactory(new PropertyValueFactory<>("grado"));
         llegadas.setCellValueFactory(new PropertyValueFactory<>("llegadas"));
-        identificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
 
         tabla.getItems().setAll(estudiantes);
     }

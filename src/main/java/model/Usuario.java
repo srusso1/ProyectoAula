@@ -12,6 +12,10 @@ public abstract class Usuario {
         this.identificacion = identificacion;
     }
 
+    public Usuario() {
+
+    }
+
     public int getID() {
         return ID;
     }

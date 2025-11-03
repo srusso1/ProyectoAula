@@ -22,6 +22,7 @@ public class InicioDocenteController {
     @FXML
     private Label totalLlegadas;
 
+
     @FXML
     private Label totalTardes;
 

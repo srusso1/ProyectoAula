@@ -101,7 +101,66 @@ public class EstudiantesDAO {
         }finally {
             ConexionSQLite.cerrarConexion();
         }
-
         return estudiantes;
+    }
+
+    public ArrayList<Estudiante> listaEstudiantesIngresos() {
+        ArrayList<Estudiante> estudiantes = new ArrayList<>();
+        String query = "SELECT e.IDENTIFICACION, e.NOMBRE, e.APELLIDO, e.GRADO, " +
+                "SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END) AS LLEGADAS_TARDE " +
+                "FROM estudiantes e LEFT JOIN llegadas l ON e.ID = l.ID_ESTUDIANTE " +
+                "GROUP BY e.IDENTIFICACION, e.NOMBRE, e.APELLIDO, e.GRADO";
+        try {
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Estudiante est = new Estudiante();
+                est.setIdentificacion(rs.getLong("IDENTIFICACION"));
+                est.setNombre(rs.getString("NOMBRE"));
+                est.setApellido(rs.getString("APELLIDO"));
+                est.setGrado(rs.getInt("GRADO"));
+                est.setLlegadas(rs.getString("LLEGADAS_TARDE"));
+                estudiantes.add(est);
+            }
+            rs.close();
+            ps.close();
+        } catch (SQLException e) {
+            Alertas.mostrarError("ERROR SQL: " + e.getMessage());
+        } finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return estudiantes;
+    }
+
+
+    public ArrayList<String[]> infoIngresoEstudiante(int ID_ESTUDIANTE){
+        ArrayList<String[]> info = new ArrayList<>();
+        String query = "SELECT u.NOMBRE || ' ' || u.APELLIDO AS DOCENTE_ENCARGADO, l.FECHA AS FECHA, l.ESTADO AS ESTADO, l.INFO AS INFORMACION " +
+                "FROM llegadas l " +
+                "JOIN usuarios u ON u.ID = l.ID_DOCENTE " +
+                "WHERE l.ID_ESTUDIANTE = ?;";
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, ID_ESTUDIANTE);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String nombreDocente = rs.getString("DOCENTE_ENCARGADO");
+                String fecha = rs.getString("FECHA");
+                String estado = (rs.getInt("ESTADO") == 0) ? "Ingreso a tiempo" : "Ingreso tarde";
+                String infoLlegada = rs.getString("INFORMACION");
+                String[] infoCompleta = {nombreDocente, fecha, estado, infoLlegada};
+                info.add(infoCompleta);
+            }
+            ps.close();
+            rs.close();
+            return info;
+        } catch (SQLException e) {
+            Alertas.mostrarError("ERROR SQL: " + e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return info;
     }
 }

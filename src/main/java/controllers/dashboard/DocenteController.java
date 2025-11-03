@@ -43,7 +43,7 @@ public class DocenteController {
 
     @FXML
     void clickRevisarEstudiante(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.CONSULTAR_ESTUDIANTE, rootPane);
     }
 
     @FXML

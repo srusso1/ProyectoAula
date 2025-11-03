@@ -1,0 +1,55 @@
+.background{
+    -fx-background-color: #f9fafc;
+}
+
+.bgInicio{
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
+}
+
+.containerInfo{
+    -fx-background-color: #f9fafc;
+    -fx-background-radius: 12;
+    -fx-padding: 15;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.text-field, .password-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #1976d2;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(25,118,210,0.2), 5, 0, 0, 0);
+}
+
+.btnConsultar {
+    -fx-background-color: linear-gradient(to bottom, #2196f3, #1565c0);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+}
+
+.btnConsultar:hover {
+    -fx-background-color: linear-gradient(to bottom, #42a5f5, #1976d2);
+}
+
+.tabla{
+    -fx-font-size: 15px;
+    -fx-padding: 0;
+}
+
+.tabla .column-header{
+    -fx-background-color: #4daaf5;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}

@@ -44,7 +44,7 @@
                      <children>
                         <VBox alignment="TOP_CENTER" prefHeight="150.0" prefWidth="200.0" spacing="50.0" styleClass="containerInfo">
                            <children>
-                              <Label text="Llegadas registradas">
+                              <Label text="Ingresos registrados">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
@@ -64,7 +64,7 @@
                               <Insets top="20.0" />
                            </padding>
                            <children>
-                              <Label text="Llegadas tarde registradas">
+                              <Label text="Ingresos tarde registrados">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>
