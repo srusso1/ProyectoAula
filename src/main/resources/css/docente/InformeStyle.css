@@ -1,0 +1,32 @@
+.bgInicio{
+    -fx-background-color: white;
+    -fx-padding: 30;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
+}
+
+.btn {
+    -fx-background-color: linear-gradient(to bottom, #2196f3, #1565c0);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-cursor: hand;
+    -fx-font-size: 16px;
+}
+
+.btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #42a5f5, #1976d2);
+}
+
+.text-field {
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-border-color: #ccc;
+    -fx-border-width: 1;
+}
+
+.text-field:focused{
+    -fx-border-color: #1976d2;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(25,118,210,0.2), 5, 0, 0, 0);
+}

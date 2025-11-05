@@ -21,5 +21,6 @@ public class Paths {
     public static final String DOCENTE_INICIO = "/views/docente/InicioDocente.fxml";
     public static final String DOCENTE_REGISTRAR_LLEGADA = "/views/docente/RegistrarLlegada.fxml";
     public static final String CONSULTAR_ESTUDIANTE = "/views/docente/ConsultaEstudiante.fxml";
+    public static final String INFORME = "/views/docente/Informe.fxml";
 
 }

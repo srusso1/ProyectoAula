@@ -28,7 +28,7 @@ public class DocenteController {
 
     @FXML
     void clickEstadisticas(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.INFORME, rootPane);
     }
 
     @FXML
