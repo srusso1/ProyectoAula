@@ -1,6 +1,7 @@
 package controllers.docente;
 
 import application.App;
+import data.ConfigDAO;
 import data.EstudiantesDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,6 +39,7 @@ public class InformeController {
     Estudiante estudiante;
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
     Informes informes;
+    ConfigDAO configDAO = new ConfigDAO();
 
     @FXML
     void clickBuscar(ActionEvent event) {
@@ -78,8 +80,11 @@ public class InformeController {
         informes = new Informes(fechaHoy, estudiante, nombreEncargado, infoLlegadas);
 
         if(Informes.generarInforme()){
-            Alertas.mostrarExito("El informe fue generado correctamente");
+            Alertas.mostrarExito("Informe generado correctamente. Revise la carpeta de informes.");
         }
+
+        ocultarElementos();
+        limpiarCampos();
     }
 
     @FXML
@@ -97,7 +102,6 @@ public class InformeController {
 
         btnInforme.setVisible(false);
         btnInforme.setManaged(false);
-
     }
 
     private void mostrarElementos(){

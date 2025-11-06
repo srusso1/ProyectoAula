@@ -33,29 +33,73 @@
                         </HBox>
 
                         <Separator prefWidth="700" />
-
-                        <HBox alignment="CENTER_LEFT" spacing="15">
-                            <children>
-                                <Label styleClass="label-normal" text="Hora límite de llegada:" />
-                                <Spinner fx:id="spinnerHora" prefWidth="120" />
-                                <Button fx:id="btnGuardar" onAction="#clickEstablecer" styleClass="btn-guardar" text="Establecer">
-                           <font>
-                              <Font name="System Bold" size="12.0" />
-                           </font></Button>
-                            </children>
+                  <VBox spacing="15.0">
+                     <children>
+      
+                              <HBox alignment="CENTER_LEFT" spacing="15">
+                                  <children>
+                                      <Label styleClass="label-normal" text="Hora límite de llegada:" />
+                                      <Spinner fx:id="spinnerHora" prefWidth="120" />
+                                      <Button fx:id="btnGuardar" onAction="#clickEstablecer" styleClass="btn-guardar" text="Establecer">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                                  </children>
+                              </HBox>
+      
+                              <HBox alignment="CENTER_LEFT" spacing="10">
+                                  <children>
+                              <Text fill="#f50505" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                                      <Label styleClass="label-normal" text="Hora establecida actualmente:" />
+                                      <Label fx:id="lblHoraActual" styleClass="hora-actual" text="08:45 AM" />
+                                  </children>
+                              </HBox>
+                     </children>
+                  </VBox>
+                  <Separator prefWidth="200.0" />
+                  <VBox spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="36.0" prefWidth="690.0" spacing="15.0">
+                           <children>
+                              <Label styleClass="label-normal" text="Elige una carpeta donde se guardaran los informes: ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="btnSeleccionarCarpeta" mnemonicParsing="false" onAction="#clickSeleccionarCarpeta" prefHeight="30.0" prefWidth="106.0" styleClass="btn-guardar" text="Elegir ruta">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Button>
+                           </children>
                         </HBox>
-
-                        <HBox alignment="CENTER_LEFT" spacing="10">
-                            <children>
-                        <Text fill="#f50505" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Text>
-                                <Label styleClass="label-normal" text="Hora establecida actualmente:" />
-                                <Label fx:id="lblHoraActual" styleClass="hora-actual" text="08:45 AM" />
-                            </children>
+                        <HBox prefHeight="26.0" prefWidth="690.0" spacing="5.0">
+                           <children>
+                              <Text fill="#f50505" strokeType="OUTSIDE" strokeWidth="0.0" text="*">
+                                 <font>
+                                    <Font name="System Bold" size="16.0" />
+                                 </font>
+                              </Text>
+                              <Label styleClass="label-normal" text="Ruta elegida actualmente: ">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Text fx:id="infoRuta" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-normal" text="Text" />
+                           </children>
                         </HBox>
+                        <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="690.0" spacing="15.0">
+                           <children>
+                              <Button mnemonicParsing="false" onAction="#clickEliminarRuta" styleClass="btn-eliminar" text="Eliminar ruta" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                     </children>
                <padding>
                   <Insets left="50.0" />

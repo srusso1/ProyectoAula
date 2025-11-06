@@ -34,6 +34,18 @@
     -fx-cursor: hand;
 }
 
+.btn-eliminar{
+    -fx-background-color: #dc3545;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 6 15;
+}
+
+.btn-eliminar:hover{
+    -fx-background-color: #c82333;
+    -fx-cursor: hand;
+}
+
 .btn-guardar:hover {
     -fx-background-color: #005a9e;
 }
