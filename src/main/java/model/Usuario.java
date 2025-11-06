@@ -46,6 +46,10 @@ public abstract class Usuario {
         this.identificacion = identificacion;
     }
 
+    public String getNombreCompleto(){
+        return nombre + " " + apellido;
+    }
+
     @Override
     public String toString() {
         return "Nombre " + nombre + ", apellido " + apellido;

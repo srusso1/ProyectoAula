@@ -4,20 +4,21 @@ import application.App;
 import data.ConfigDAO;
 import data.EstudiantesDAO;
 import data.LlegadasDAO;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Estudiante;
-import utils.Alertas;
-import utils.Extras;
-import utils.Transiciones;
-import utils.Validaciones;
+import utils.*;
 
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 public class RegistrarLlegadaController {
@@ -26,24 +27,32 @@ public class RegistrarLlegadaController {
     private Button btnRegistrar;
 
     @FXML
-    private VBox infoEstudiante;
+    private TableView<InfoLlegada> tablaLlegada;
+
+    @FXML
+    private TableColumn<InfoLlegada, String> colDocente;
+
+    @FXML
+    private TableColumn<InfoLlegada, String> colFecha;
+
+    @FXML
+    private TableColumn<InfoLlegada, String> colEstado;
+
+    @FXML
+    private TableColumn<InfoLlegada, String> colInfo;
+
 
     @FXML
     private VBox contenedor;
 
     @FXML
-    private Label grado;
+    private HBox infoEstudiante;
 
     @FXML
     private Label infoID;
 
     @FXML
-    private Label nombre;
-
-    @FXML
     private TextField txtID;
-
-    Estudiante estudiante;
 
     @FXML
     void clickBuscar(ActionEvent event) {
@@ -55,10 +64,19 @@ public class RegistrarLlegadaController {
         registrarLlegada();
     }
 
+    private Estudiante estudiante;
+    EstudiantesDAO estudiantesDAO = new  EstudiantesDAO();
+
     @FXML
     void initialize() {
         Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
         ocultarElementos();
+        tablaLlegada.setPlaceholder(new Label("Aún no hay registros de ingreso para este estudiante."));
+        colDocente.setCellValueFactory(new PropertyValueFactory<>("docenteEncargado"));
+        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colInfo.setCellValueFactory(new PropertyValueFactory<>("informacion"));
+
     }
 
     private void ocultarElementos(){
@@ -66,6 +84,8 @@ public class RegistrarLlegadaController {
         btnRegistrar.setVisible(false);
         infoEstudiante.setManaged(false);
         infoEstudiante.setVisible(false);
+        tablaLlegada.setVisible(false);
+        tablaLlegada.setManaged(false);
     }
 
     private void mostrarElementos(){
@@ -73,6 +93,8 @@ public class RegistrarLlegadaController {
         btnRegistrar.setVisible(true);
         infoEstudiante.setManaged(true);
         infoEstudiante.setVisible(true);
+        tablaLlegada.setVisible(true);
+        tablaLlegada.setManaged(true);
     }
 
     private void limpiarID(){
@@ -80,7 +102,7 @@ public class RegistrarLlegadaController {
     }
 
     private void buscarEstudiante(){
-        EstudiantesDAO estudiantesDAO = new  EstudiantesDAO();
+
         if(!Validaciones.validarIdentificacion(txtID.getText())){
             limpiarID();
             return;
@@ -89,10 +111,9 @@ public class RegistrarLlegadaController {
         Long id = Long.parseLong(txtID.getText());
         estudiante = estudiantesDAO.buscarEstudiante(id);
         if(estudiante != null){
-            infoID.setText("> La identificacion " + estudiante.getIdentificacion() + " corresponde al siguiente estudiante:");
-            nombre.setText("Nombre completo: " + estudiante.getNombre() + " " +  estudiante.getApellido());
-            grado.setText("Grado: " + estudiante.getGrado());
+            infoID.setText(estudiante.getNombreCompleto() + " — Grado " + estudiante.getGrado() +"°");
             mostrarElementos();
+            cargarUltimosRegistros(estudiante.getID());
         }else{
             Alertas.mostrarError("No hay ningún estudiante registrado con esa identificación");
             limpiarID();
@@ -148,20 +169,21 @@ public class RegistrarLlegadaController {
         return tiempoTarde;
     }
 
+    private void cargarUltimosRegistros(long idEstudiante) {
+        LlegadasDAO llegadasDAO = new LlegadasDAO();
+        ArrayList<String[]> lista = estudiantesDAO.infoIngresoEstudiante((int) idEstudiante);
 
+        // Solo los últimos 5 (si hay más)
+        int desde = Math.max(0, lista.size() - 5);
+        List<String[]> ultimosCinco = lista.subList(desde, lista.size());
 
-    /*
-        System.out.println(spinnerHora.getValue());
-        LocalTime horaLimite = spinnerHora.getValue();
-        LocalTime horaActual = LocalTime.now().withSecond(0).withNano(0);
-        // Comparar
-        if (horaActual.isBefore(horaLimite)) {
-            System.out.println("Aún estás dentro del horario permitido");
-        } else if (horaActual.equals(horaLimite)) {
-            System.out.println("Justo en la hora límite, hora actual: " + horaActual);
-        } else {
-            System.out.println("Se pasó la hora límite, hora actual: " + horaActual);
+        ObservableList<InfoLlegada> data = FXCollections.observableArrayList();
+        for (String[] datos : ultimosCinco) {
+            data.add(new InfoLlegada(datos[0], datos[1], datos[2], datos[3]));
         }
-        */
+
+        tablaLlegada.setItems(data);
+    }
+
 
 }
