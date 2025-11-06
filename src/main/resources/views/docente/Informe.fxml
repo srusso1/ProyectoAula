@@ -13,77 +13,76 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="650.0" prefWidth="900.0" stylesheets="@../../css/docente/InformeStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.docente.InformeController">
-   <children>
-      <StackPane alignment="TOP_LEFT" layoutX="341.0" layoutY="237.0" prefHeight="150.0" prefWidth="200.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
-         <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-               <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="799.0" spacing="25.0">
-                     <children>
-                        <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../images/document.png" />
-                           </image>
-                        </ImageView>
-                        <Label text="Generar informe de un estudiante">
-                           <font>
-                              <Font size="26.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <Separator prefWidth="200.0" />
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
-                     <children>
-                        <TextField fx:id="txtID" prefHeight="42.0" prefWidth="254.0" promptText="Identificacion del estudiante">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </TextField>
-                        <Button mnemonicParsing="false" onAction="#clickBuscar" prefHeight="33.0" prefWidth="102.0" styleClass="btn" text="Buscar">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER" prefHeight="272.0" prefWidth="689.0">
-                     <children>
-                        <VBox fx:id="infoEstudiante" maxHeight="150.0" maxWidth="500.0" minWidth="200.0" prefHeight="200.0" prefWidth="635.0" spacing="25.0" styleClass="bgInicio">
+    <children>
+        <StackPane alignment="TOP_LEFT" layoutX="341.0" layoutY="237.0" prefHeight="150.0" prefWidth="200.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+            <children>
+                <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+                    <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="55.0" prefWidth="799.0" spacing="25.0">
+                            <children>
+                                <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../../images/document.png" />
+                                    </image>
+                                </ImageView>
+                                <Label text="Generar informe de un estudiante">
+                                    <font>
+                                        <Font size="26.0" />
+                                    </font>
+                                </Label>
+                            </children>
+                        </HBox>
+                        <Separator prefWidth="200.0" />
+                        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="50.0">
+                            <children>
+                                <TextField fx:id="txtID" prefHeight="42.0" prefWidth="254.0" promptText="Identificacion del estudiante">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                </TextField>
+                                <Button mnemonicParsing="false" onAction="#clickBuscar" prefHeight="33.0" prefWidth="102.0" styleClass="btn" text="Buscar">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                </Button>
+                            </children>
+                        </HBox>
+                            <Label fx:id="lbInstrucciones" alignment="CENTER" style="-fx-text-fill: #607d8b; -fx-font-size: 13px; -fx-font-style: italic;" text="Escribe la identificación del estudiante y obtén un informe con el detalle de sus llegadas." wrapText="true">
+                                        </Label>
+                        <VBox alignment="CENTER" prefHeight="159.0" prefWidth="690.0">
+                            <children>
+                        <HBox fx:id="contenedorEstudiante" alignment="CENTER_LEFT" maxWidth="650.0" spacing="20.0" styleClass="info-card">
                            <children>
-                              <Label fx:id="lbNombre" text="Nombre completo:">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="lbGrado" text="Grado: ">
-                                 <font>
-                                    <Font size="20.0" />
-                                 </font>
-                              </Label>
+                              <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/student_icon.png" />
+                                 </image>
+                              </ImageView>
+                              <VBox spacing="3">
+                                 <children>
+                                    <Label styleClass="info-label-header" text="Estás generando el informe de:" />
+                                    <Label fx:id="infoEstu" styleClass="info-label" text="Sebastian Russo — Grado 11°" />
+                                 </children>
+                              </VBox>
                            </children>
-                           <padding>
-                              <Insets left="20.0" top="20.0" />
-                           </padding>
+                        </HBox>
+                                <Button fx:id="btnInforme" alignment="CENTER" mnemonicParsing="false" onAction="#clickInforme" prefHeight="45.0" prefWidth="164.0" styleClass="btn" text="Generar informe">
+                                    <font>
+                                        <Font size="16.0" />
+                                    </font>
+                                    <VBox.margin>
+                                        <Insets top="20.0" />
+                                    </VBox.margin>
+                                </Button>
+                            </children>
                         </VBox>
-                        <Button fx:id="btnInforme" alignment="CENTER" mnemonicParsing="false" onAction="#clickInforme" prefHeight="45.0" prefWidth="164.0" styleClass="btn" text="Generar informe">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets top="50.0" />
-                           </VBox.margin>
-                        </Button>
-                     </children>
-                  </VBox>
-               </children>
-               <padding>
-                  <Insets left="50.0" top="50.0" />
-               </padding>
-            </VBox>
-         </children>
-      </StackPane>
-   </children>
+                    </children>
+                    <padding>
+                        <Insets left="50.0" top="50.0" />
+                    </padding>
+                </VBox>
+            </children>
+        </StackPane>
+    </children>
 </AnchorPane>

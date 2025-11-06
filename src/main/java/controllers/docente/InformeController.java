@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import model.Estudiante;
 import model.Informes;
@@ -20,13 +21,13 @@ import java.util.Objects;
 public class InformeController {
 
     @FXML
-    private VBox infoEstudiante;
+    private HBox contenedorEstudiante;
 
     @FXML
-    private Label lbGrado;
+    private Label infoEstu;
 
     @FXML
-    private Label lbNombre;
+    private Label lbInstrucciones;
 
     @FXML
     private TextField txtID;
@@ -51,8 +52,7 @@ public class InformeController {
             Alertas.mostrarError("No hay ningún estudiante registrado con esa identificación");
             limpiarCampos();
         }else{
-            lbNombre.setText("Nombre completo: " + estudiante.getNombreCompleto());
-            lbGrado.setText("Grado: " + estudiante.getGrado());
+            infoEstu.setText(estudiante.getNombreCompleto() + " — Grado " + estudiante.getGrado() + "°");
             mostrarElementos();
         }
     }
@@ -76,7 +76,10 @@ public class InformeController {
         }
 
         informes = new Informes(fechaHoy, estudiante, nombreEncargado, infoLlegadas);
-        Informes.generarInforme();
+
+        if(Informes.generarInforme()){
+            Alertas.mostrarExito("El informe fue generado correctamente");
+        }
     }
 
     @FXML
@@ -89,19 +92,23 @@ public class InformeController {
     }
 
     private void ocultarElementos(){
-        infoEstudiante.setVisible(false);
-        infoEstudiante.setManaged(false);
+        contenedorEstudiante.setVisible(false);
+        contenedorEstudiante.setManaged(false);
 
         btnInforme.setVisible(false);
         btnInforme.setManaged(false);
+
     }
 
     private void mostrarElementos(){
-        infoEstudiante.setVisible(true);
-        infoEstudiante.setManaged(true);
+        contenedorEstudiante.setVisible(true);
+        contenedorEstudiante.setManaged(true);
 
         btnInforme.setVisible(true);
         btnInforme.setManaged(true);
+
+        lbInstrucciones.setVisible(false);
+        lbInstrucciones.setManaged(false);
     }
 }
 

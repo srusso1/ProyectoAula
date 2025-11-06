@@ -111,7 +111,7 @@ public class RegistrarLlegadaController {
         Long id = Long.parseLong(txtID.getText());
         estudiante = estudiantesDAO.buscarEstudiante(id);
         if(estudiante != null){
-            infoID.setText(estudiante.getNombreCompleto() + " — Grado" + estudiante.getGrado() +"°");
+            infoID.setText(estudiante.getNombreCompleto() + " — Grado " + estudiante.getGrado() +"°");
             mostrarElementos();
             cargarUltimosRegistros(estudiante.getID());
         }else{

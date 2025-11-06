@@ -1,5 +1,7 @@
 package model;
 
+import utils.Alertas;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -58,12 +60,14 @@ public class Informes {
         return info;
     }
 
-    public static void generarInforme(){
+    public static boolean generarInforme(){
         String NOMBRE_ARCHIVO = "INFORME_"+estudiante.getNombre()+"_"+estudiante.getApellido()+".txt";
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))){
             writer.write(plantilla());
+            return true;
         }catch(Exception e){
-            System.out.println(e.getMessage());
+            Alertas.mostrarError("Error al generar el informe: " + e.getMessage());
+            return false;
         }
     }
 
