@@ -15,6 +15,7 @@ import utils.Extras;
 import utils.Validaciones;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class InformeController {
 
@@ -50,7 +51,7 @@ public class InformeController {
             Alertas.mostrarError("No hay ningún estudiante registrado con esa identificación");
             limpiarCampos();
         }else{
-            lbNombre.setText("Nombre completo: " + estudiante.getNombre() + " " + estudiante.getApellido());
+            lbNombre.setText("Nombre completo: " + estudiante.getNombreCompleto());
             lbGrado.setText("Grado: " + estudiante.getGrado());
             mostrarElementos();
         }
@@ -58,14 +59,22 @@ public class InformeController {
 
     @FXML
     void clickInforme(ActionEvent event) {
-        // String fecha, Estudiante estudiante, String nombreEncargado, ArrayList<String[]> infoLlegadas
-        String nombreEncargado = App.usuarioLogueado.getNombre() + " " + App.usuarioLogueado.getApellido();
+        // Parámetros informes: String fecha, Estudiante estudiante, String nombreEncargado, ArrayList<String[]> infoLlegadas
+
+        String nombreEncargado = App.usuarioLogueado.getNombreCompleto();
         String fechaHoy = Extras.fechaHoy();
         ArrayList<String[]> infoLlegadas = estudiantesDAO.infoIngresoEstudiante(estudiante.getID());
-        if(!infoLlegadas.getFirst()[2].equals("Ingreso tarde")){
-            Alertas.mostrarWarning(estudiante.getNombre() + " " + estudiante.getApellido() + " no tiene ingresos tarde registrados, no se puede generar informe");
+
+        if(infoLlegadas.isEmpty()){
+            Alertas.mostrarWarning("El estudiante " + estudiante.getNombreCompleto() + " no tiene ningún ingreso registrado, no se puede generar el informe.");
             return;
+        }else{
+            if(!Objects.equals(infoLlegadas.getFirst()[2], "Ingreso tarde")){
+                Alertas.mostrarWarning("El estudiante " + estudiante.getNombreCompleto() + " no tiene ningún ingreso tarde registrado, no se puede generar el informe.");
+                return;
+            }
         }
+
         informes = new Informes(fechaHoy, estudiante, nombreEncargado, infoLlegadas);
         Informes.generarInforme();
     }

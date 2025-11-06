@@ -34,7 +34,7 @@ public class Informes {
                 "Fecha: " + fecha + "\n" +
                 "Encargado: " + nombreEncargado + "\n\n" +
                 "Reciba un cordial saludo.\nNos dirigimos a usted para informar que el estudiante: \n\n" +
-                "\t\tNombre completo: " + estudiante.getNombre() + " " + estudiante.getApellido() + "\n" +
+                "\t\tNombre completo: " + estudiante.getNombreCompleto() + "\n" +
                 "\t\tGrado: " + estudiante.getGrado() + "\n\n" +
                 "Presenta un total de " + llegadasTarde + " INGRESO(S) TARDE registrados hasta la fecha.\n" +
                 "A continuación, se relacionan las fechas: \n\n"+
@@ -52,7 +52,7 @@ public class Informes {
         for (String[] infoLlegada : infoLlegadas) {
             if (infoLlegada[2].equals("Ingreso tarde")) {
                 assert false;
-                info.append("\t\t").append(infoLlegada[1]).append(" - ").append(infoLlegada[3] + "\n");
+                info.append("\t\t").append(infoLlegada[1]).append(" - ").append(infoLlegada[3]).append("\n");
             }
         }
         return info;

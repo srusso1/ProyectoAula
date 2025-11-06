@@ -9,13 +9,6 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 15, 0, 0, 4);
 }
 
-.infoEstudiante{
-    -fx-background-color: #f9fafc;
-    -fx-background-radius: 12;
-    -fx-padding: 20;
-    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
-}
-
 .botones {
     -fx-background-color: linear-gradient(to bottom, #2196f3, #1565c0);
     -fx-background-radius: 8;
@@ -29,6 +22,51 @@
     -fx-background-color: linear-gradient(to bottom, #42a5f5, #1976d2);
 }
 
-.btnRegistrar:hover{
-    -fx-background-color: linear-gradient(to bottom, #35ba05, #048136);
+.btnRegistrar {
+    -fx-background-color: linear-gradient(to bottom, #0d6efd, #0b5ed7);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 15px;
+    -fx-background-radius: 10px;
+    -fx-padding: 8 20 8 20;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(13,110,253,0.2), 6, 0, 0, 2);
+}
+
+.btnRegistrar:hover {
+    -fx-background-color: linear-gradient(to bottom, #0b5ed7, #0a58ca);
+    -fx-translate-y: -1px;
+    -fx-effect: dropshadow(gaussian, rgba(13,110,253,0.4), 8, 0, 0, 3);
+}
+
+.info-card {
+    -fx-background-color: #f9f9fb;
+    -fx-padding: 10 15;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-color: #dfe3e8;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.05), 6, 0, 0, 2);
+}
+
+.info-label-header {
+    -fx-font-size: 13px;
+    -fx-text-fill: #666;
+}
+
+.info-label {
+    -fx-font-size: 15px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #222;
+}
+
+.tabla{
+    -fx-font-size: 15px;
+    -fx-padding: 0;
+}
+
+.tabla .column-header{
+    -fx-background-color: #4daaf5;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
 }
