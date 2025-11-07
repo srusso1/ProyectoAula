@@ -69,7 +69,7 @@ public class Informes {
         String ruta = configDAO.obtenerRutaArchivo();
         System.out.println(ruta);
         if(ruta == null){
-            Alertas.mostrarWarning("Aún no se ha configurado una carpeta para guardar los informes. Por favor, contacta un administrador para solucionarlo.");
+            Alertas.mostrarWarning("Aún no se ha configurado una carpeta para guardar los informes. Por favor, contacta un administrador.");
             return false;
         }
 
@@ -77,7 +77,6 @@ public class Informes {
         Path archivo = Paths.get(ruta, String.format("INFORME_%s_%s.txt",
                 estudiante.getNombre(),
                 estudiante.getApellido()));
-
         String NOMBRE_ARCHIVO = archivo.toString();
 
         try(BufferedWriter writer = new BufferedWriter(new FileWriter(NOMBRE_ARCHIVO))){

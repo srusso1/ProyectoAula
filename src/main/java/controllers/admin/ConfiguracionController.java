@@ -53,7 +53,7 @@ public class ConfiguracionController {
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Seleccionar carpeta para guardar informe");
 
-        // Puedes establecer una carpeta inicial opcional:
+        // Establecer ruta inicial
         directoryChooser.setInitialDirectory(new File(System.getProperty("user.home") + File.separator + "Documents"));
         Stage stage = (Stage) btnSeleccionarCarpeta.getScene().getWindow();
         File carpetaSeleccionada = directoryChooser.showDialog(stage);
