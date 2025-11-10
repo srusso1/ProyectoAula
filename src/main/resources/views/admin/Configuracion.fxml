@@ -5,6 +5,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -96,6 +98,38 @@
                         <HBox alignment="CENTER_LEFT" prefHeight="14.0" prefWidth="690.0" spacing="15.0">
                            <children>
                               <Button mnemonicParsing="false" onAction="#clickEliminarRuta" styleClass="btn-eliminar" text="Eliminar ruta" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+                  <Separator prefWidth="200.0" />
+                  <VBox prefHeight="200.0" prefWidth="568.0" spacing="15.0">
+                     <children>
+                        <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="689.0" spacing="15.0">
+                           <children>
+                              <Label styleClass="label-normal" text="Importar estudiantes desde archivo CSV">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#elegirCSV" prefHeight="31.0" prefWidth="127.0" styleClass="btn-guardar" text="Elegir archivo" />
+                           </children>
+                        </HBox>
+                        <TableView fx:id="tabla" maxHeight="200.0" maxWidth="630.0" minHeight="200.0" minWidth="200.0" prefHeight="200.0" prefWidth="200.0" styleClass="tabla">
+                          <columns>
+                            <TableColumn fx:id="colIdentificacion" prefWidth="75.0" text="IDENTIFICACIÓN" />
+                            <TableColumn fx:id="colNombre" prefWidth="75.0" text="NOMBRE" />
+                              <TableColumn fx:id="colApellido" prefWidth="75.0" text="APELLIDO" />
+                              <TableColumn fx:id="colGrado" prefWidth="75.0" text="GRADO" />
+                          </columns>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy>
+                        </TableView>
+                        <HBox spacing="20.0">
+                           <children>
+                              <Button fx:id="btnImportar" mnemonicParsing="false" onAction="#importar" prefWidth="110.0" styleClass="btn-guardar" text="Importar" />
+                              <Button fx:id="btnBorrarLista" mnemonicParsing="false" onAction="#clickBorrarLista" prefHeight="31.0" prefWidth="155.0" styleClass="btn-eliminar" text="Borrar lista actual" />
                            </children>
                         </HBox>
                      </children>

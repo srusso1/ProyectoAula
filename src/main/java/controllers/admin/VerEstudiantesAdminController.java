@@ -39,7 +39,6 @@ public class VerEstudiantesAdminController {
         apellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         grado.setCellValueFactory(new PropertyValueFactory<>("grado"));
         llegadas.setCellValueFactory(new PropertyValueFactory<>("llegadas"));
-
         tabla.getItems().setAll(estudiantes);
     }
 

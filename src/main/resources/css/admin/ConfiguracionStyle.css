@@ -89,3 +89,16 @@
 .spinner .decrement-arrow {
     -fx-background-color: #555555;
 }
+
+
+.tabla{
+    -fx-font-size: 15px;
+    -fx-padding: 0;
+}
+
+.tabla .column-header{
+    -fx-background-color: #4daaf5;
+    -fx-font-family: "Segoe UI", Roboto, sans-serif;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}

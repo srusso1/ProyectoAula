@@ -20,8 +20,8 @@ public class EstudiantesDAO {
             Connection conexion = ConexionSQLite.conectar();
             PreparedStatement ps = conexion.prepareStatement(query);
             ps.setLong(1, estudiante.getIdentificacion());
-            ps.setString(2, estudiante.getNombre());
-            ps.setString(3, estudiante.getApellido());
+            ps.setString(2, estudiante.getNombre().toUpperCase());
+            ps.setString(3, estudiante.getApellido().toUpperCase());
             ps.setInt(4, estudiante.getGrado());
             int filasAfectadas = ps.executeUpdate();
             return filasAfectadas > 0;

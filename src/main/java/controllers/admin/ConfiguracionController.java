@@ -2,22 +2,26 @@ package controllers.admin;
 
 import application.App;
 import data.ConfigDAO;
+import data.EstudiantesDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Spinner;
-import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import model.Estudiante;
 import utils.Alertas;
 import utils.Extras;
 import utils.Paths;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 
 public class ConfiguracionController {
 
@@ -28,19 +32,42 @@ public class ConfiguracionController {
     private Label lblHoraActual;
 
     @FXML
-    private Text infoRuta;
+    private Button btnImportar;
 
-    ConfigDAO configDAO = new ConfigDAO();
+    @FXML
+    private Text infoRuta;
 
     @FXML
     private Button btnSeleccionarCarpeta;
 
+    @FXML
+    private TableColumn<Estudiante, String> colApellido;
+
+    @FXML
+    private TableColumn<Estudiante, Integer> colGrado;
+
+    @FXML
+    private TableColumn<Estudiante, Long> colIdentificacion;
+
+    @FXML
+    private TableColumn<Estudiante, String> colNombre;
+
+    @FXML
+    private TableView<Estudiante> tabla;
+
+    @FXML
+    private Button btnBorrarLista;
+
+    private ArrayList<Estudiante> estudiantes = new ArrayList<>();
+    ConfigDAO configDAO = new ConfigDAO();
+    EstudiantesDAO estudiantesDAO = new  EstudiantesDAO();
 
     @FXML
     public void initialize() {
         configurarSpinner();
         mostrarHora();
         mostrarRutaActual();
+        ocultarElementos();
     }
 
     @FXML
@@ -50,6 +77,127 @@ public class ConfiguracionController {
 
     @FXML
     void clickSeleccionarCarpeta(ActionEvent event) {
+        seleccionarCarpeta();
+    }
+
+    @FXML
+    void clickEliminarRuta(ActionEvent event) {
+        eliminarRuta();
+    }
+
+    @FXML
+    void elegirCSV(ActionEvent event) {
+        elegirCSV();
+    }
+
+    @FXML
+    void importar(ActionEvent event) {
+        importarEstudiantes();
+    }
+
+    @FXML
+    void clickBorrarLista(ActionEvent event) {
+        borrarLista();
+        ocultarElementos();
+    }
+
+    private void importarEstudiantes(){
+        int exitos = 0;
+        for (Estudiante estudiante : estudiantes) {
+            Estudiante estu = estudiantesDAO.buscarEstudiante(estudiante.getIdentificacion());
+            if(estu!=null){
+                Alertas.mostrarWarning("La identificacion " + estu.getIdentificacion() + " ya corresponde al estudiante " + estu.getNombreCompleto() +
+                        ". Fue omitido en el registro");
+            }else{
+                if(estudiantesDAO.registrarEstudiante(estudiante)){
+                    exitos++;
+                }
+            }
+        }
+
+        if(exitos > 0){
+            Alertas.mostrarExito("Se importaron correctamente " + exitos + " estudiantes desde el archivo CSV.");
+        }
+    }
+
+    private void borrarLista(){
+        Alertas.mostrarInfo("La lista de estudiantes se vació correctamente.\nElige un nuevo archivo CSV si así lo deseas.");
+        tabla.getItems().clear();
+        estudiantes.clear();
+        ocultarElementos();
+    }
+
+    private void elegirCSV(){
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Seleccionar archivo CSV");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Archivos CSV", "*.csv")
+        );
+
+        File archivoSeleccionado = fileChooser.showOpenDialog(null);
+        if(archivoSeleccionado != null){
+            try(BufferedReader leer = new BufferedReader(new FileReader(archivoSeleccionado))){
+                String linea;
+                leer.readLine();
+                while((linea = leer.readLine()) != null){
+                    String[] datos =  linea.split(",");
+                    long id = Long.parseLong(datos[0]);
+                    String nombre = datos[1];
+                    String apellido = datos[2];
+                    int grado = Integer.parseInt(datos[3]);
+                    estudiantes.add(new Estudiante(nombre,apellido,id,grado));
+                }
+                if(estudiantes.isEmpty()){
+                    Alertas.mostrarError("No hay estudiantes validos en el archivo");
+                }else{
+                    if(!tabla.getItems().isEmpty()){
+                        Alertas.mostrarError("La tabla contiene estudiantes actualmente.\n" +
+                                "Use la opción 'Borrar lista' antes de volver a cargar otro archivo.");
+                        return;
+                    }
+                    iniciarTabla();
+                    mostrarElementos();
+                    Alertas.mostrarInfo("Fueron cargados " + estudiantes.size() + " estudiantes desde el archivo CSV");
+                }
+            }catch(Exception e){
+                Alertas.mostrarError("Error al leer archivo CSV: " + e.getMessage());
+            }
+        }else{
+            Alertas.mostrarError("No se eligió ningún archivo CSV");
+        }
+    }
+
+    private void ocultarElementos(){
+        tabla.setVisible(false);
+        tabla.setManaged(false);
+
+        btnImportar.setVisible(false);
+        btnImportar.setManaged(false);
+
+        btnBorrarLista.setVisible(false);
+        btnBorrarLista.setManaged(false);
+    }
+
+    private void mostrarElementos(){
+        tabla.setVisible(true);
+        tabla.setManaged(true);
+
+        btnImportar.setVisible(true);
+        btnImportar.setManaged(true);
+
+        btnBorrarLista.setVisible(true);
+        btnBorrarLista.setManaged(true);
+    }
+
+    private void iniciarTabla(){
+        colIdentificacion.setCellValueFactory(new PropertyValueFactory<>("identificacion"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+        colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+        colGrado.setCellValueFactory(new PropertyValueFactory<>("grado"));
+        tabla.getItems().setAll(estudiantes);
+    }
+
+    private void seleccionarCarpeta(){
         DirectoryChooser directoryChooser = new DirectoryChooser();
         directoryChooser.setTitle("Seleccionar carpeta para guardar informe");
 
@@ -69,8 +217,7 @@ public class ConfiguracionController {
         }
     }
 
-    @FXML
-    void clickEliminarRuta(ActionEvent event) {
+    private void eliminarRuta(){
         boolean confirmar = Alertas.mostrarConfirmacion("¿Estás seguro de eliminar la ruta actual? No se podran guardar informes si no hay una ruta establecida");
         if (confirmar) {
             if(configDAO.eliminarRutaEstablecida()){
@@ -82,8 +229,6 @@ public class ConfiguracionController {
         }else{
             Alertas.mostrarInfo("Acción cancelada por el usuario");
         }
-
-
     }
 
     private void establecerHora(){
@@ -146,5 +291,4 @@ public class ConfiguracionController {
         };
         spinnerHora.setValueFactory(valueFactory);
     }
-
 }
