@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class LlegadasDAO {
@@ -68,5 +69,26 @@ public class LlegadasDAO {
         }finally {
             ConexionSQLite.cerrarConexion();
         }
+    }
+
+    public ArrayList<Integer> infoIngresosGrado(){
+        ArrayList<Integer> infoLlegadas = new ArrayList<Integer>();
+
+        String query = "SELECT e.GRADO, SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END) AS 'LLEGADAS_TARDE' " +
+                "FROM estudiantes e LEFT JOIN llegadas l ON e.ID = l.ID_ESTUDIANTE GROUP BY e.GRADO";
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                infoLlegadas.add(rs.getInt("LLEGADAS_TARDE"));
+            }
+            return infoLlegadas;
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: " + e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return infoLlegadas;
     }
 }

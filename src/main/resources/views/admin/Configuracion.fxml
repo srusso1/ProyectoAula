@@ -107,7 +107,7 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" prefHeight="66.0" prefWidth="689.0" spacing="15.0">
                            <children>
-                              <Label styleClass="label-normal" text="Importar estudiantes desde archivo CSV">
+                              <Label styleClass="label-normal" text="Selecciona un archivo CSV para importar los estudiantes:">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

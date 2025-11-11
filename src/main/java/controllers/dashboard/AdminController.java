@@ -58,7 +58,7 @@ public class AdminController {
 
     @FXML
     void clickInformes(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.ESTADISTICAS, rootPane);
     }
 
     @FXML
