@@ -4,6 +4,8 @@ import application.App;
 import data.ConfigDAO;
 import data.EstudiantesDAO;
 import data.LlegadasDAO;
+import javafx.animation.PauseTransition;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 import model.Estudiante;
 import utils.*;
 
@@ -55,6 +58,9 @@ public class RegistrarLlegadaController {
     private TextField txtID;
 
     @FXML
+    private Button btnBuscar;
+
+    @FXML
     void clickBuscar(ActionEvent event) {
         buscarEstudiante();
     }
@@ -95,6 +101,7 @@ public class RegistrarLlegadaController {
         infoEstudiante.setVisible(true);
         tablaLlegada.setVisible(true);
         tablaLlegada.setManaged(true);
+        btnRegistrar.setDisable(false);
     }
 
     private void limpiarID(){
@@ -137,7 +144,7 @@ public class RegistrarLlegadaController {
 
             if (horaActual.isBefore(horaLimite)) {
                 if(llegadasDAO.registrarLlegada(estudiante.getID(), App.usuarioLogueado.getID(), Extras.fechaHoy(), 0, "El estudiante no llego tarde")){
-                    Alertas.mostrarInfo("Se registró el ingreso correctamente. El estudiante llegó a tiempo.");
+                    Alertas.mostrarInfo("Se registró el ingreso, el estudiante ha llegado a tiempo. Verifique en la tabla los últimos ingresos");
                 }
             } else {
                 long minutosTarde = java.time.Duration.between(horaLimite, horaActual).toMinutes();
@@ -148,8 +155,21 @@ public class RegistrarLlegadaController {
 
                 }
             }
-            limpiarID();
-            ocultarElementos();
+            cargarUltimosRegistros(estudiante.getID());
+            btnRegistrar.setDisable(true);
+            btnBuscar.setDisable(true);
+            txtID.setDisable(true);
+            PauseTransition pausa = new PauseTransition(Duration.seconds(5));
+            pausa.setOnFinished(event -> {
+                ocultarElementos();
+                limpiarID();
+                Platform.runLater(() -> {
+                   btnBuscar.setDisable(false);
+                   txtID.setDisable(false);
+                   Alertas.mostrarInfo("Se ocultó automáticamente la tabla y se limpió el campo de identificación");
+                });
+            });
+            pausa.play();
         } catch (Exception e) {
             Alertas.mostrarError("Error al interpretar la hora almacenada: " + horaTexto);
         }
@@ -170,10 +190,9 @@ public class RegistrarLlegadaController {
     }
 
     private void cargarUltimosRegistros(long idEstudiante) {
-        LlegadasDAO llegadasDAO = new LlegadasDAO();
         ArrayList<String[]> lista = estudiantesDAO.infoIngresoEstudiante((int) idEstudiante);
 
-        // Solo los últimos 5 (si hay más)
+        // ultimos cinco
         int desde = Math.max(0, lista.size() - 5);
         List<String[]> ultimosCinco = lista.subList(desde, lista.size());
 

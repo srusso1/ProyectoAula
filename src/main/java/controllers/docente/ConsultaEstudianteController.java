@@ -96,8 +96,8 @@ public class ConsultaEstudianteController {
             ocultarElementos();
             return;
         }
-        infoEstudiante.setText("Estudiante encontrado: " + estudiante.getNombre() + " " + estudiante.getApellido()
-                                + " Grado: " + estudiante.getGrado());
+        infoEstudiante.setText(estudiante.getNombreCompleto() + " con la identificación " + estudiante.getIdentificacion() +
+                " - Grado: " + estudiante.getGrado());
         int idEstudiante = estudiante.getID();
         cargarInfoEstudiante(idEstudiante);
     }

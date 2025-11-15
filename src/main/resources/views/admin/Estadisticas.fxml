@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -12,12 +15,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="580.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.EstadisticasController">
+<AnchorPane prefHeight="580.0" prefWidth="900.0" stylesheets="@../../css/admin/EstadisticasStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.EstadisticasController">
    <children>
-      <StackPane layoutX="344.0" layoutY="207.0" prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
+      <StackPane layoutX="344.0" layoutY="207.0" prefHeight="150.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="200.0">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                      <children>
@@ -34,9 +36,26 @@
                      </children>
                   </HBox>
                   <Separator prefWidth="200.0" />
-                  <HBox>
+                  <HBox spacing="15.0">
                      <children>
-                        <PieChart fx:id="graficoTorta" />
+                        <VBox prefHeight="323.0" spacing="10.0">
+                           <children>
+                              <PieChart fx:id="graficoTorta" title="Ingresos tarde por grado" />
+                              <Label styleClass="textoTip" text="Tip: (Cantidad de ingresos tarde -  % en el 100%)" wrapText="true" />
+                           </children>
+                        </VBox>
+                        <VBox prefHeight="323.0">
+                           <children>
+                              <BarChart fx:id="graficoBarraMes" title="Ingresos tarde por mes">
+                                <xAxis>
+                                  <CategoryAxis fx:id="ejeX" label="Mes" side="LEFT" />
+                                </xAxis>
+                                <yAxis>
+                                  <NumberAxis fx:id="ejeY" label="Ingresos" side="LEFT" />
+                                </yAxis>
+                              </BarChart>
+                           </children>
+                        </VBox>
                      </children>
                      <VBox.margin>
                         <Insets top="15.0" />

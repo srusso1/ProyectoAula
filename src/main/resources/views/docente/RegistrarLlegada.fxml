@@ -47,7 +47,7 @@
                                         <Font size="15.0" />
                                     </font>
                                 </TextField>
-                                <Button mnemonicParsing="false" onAction="#clickBuscar" prefHeight="34.0" prefWidth="97.0" styleClass="botones" text="Buscar" />
+                                <Button fx:id="btnBuscar" mnemonicParsing="false" onAction="#clickBuscar" prefHeight="34.0" prefWidth="97.0" styleClass="botones" text="Buscar" />
                             </children>
                         </HBox>
 
@@ -70,7 +70,7 @@
                         <Button fx:id="btnRegistrar" mnemonicParsing="false" onAction="#clickRegistrar" prefHeight="40.0" prefWidth="193.0" styleClass="btnRegistrar" text="Registrar ingreso" />
 
                         <!-- Tabla de llegadas -->
-                        <TableView fx:id="tablaLlegada" prefHeight="200.0" prefWidth="200.0" styleClass="tabla">
+                        <TableView fx:id="tablaLlegada" focusTraversable="false" prefHeight="200.0" prefWidth="200.0" styleClass="tabla">
                             <columns>
                                 <TableColumn fx:id="colDocente" prefWidth="145.0" text="Docente encargado" />
                                 <TableColumn fx:id="colFecha" minWidth="0.0" prefWidth="102.0" text="Fecha" />
