@@ -3,7 +3,7 @@ package utils;
 public class Paths {
     // DASHBOARD
     public static final String ADMIN_VIEW = "/views/dashboard/Admin.fxml";
-    public static final String DOCENTE_VIEW = "/views/dashboard/Docente-copy.fxml";
+    public static final String DOCENTE_VIEW = "/views/dashboard/Docente.fxml";
 
     // ADMINISTRADOR
     public static final String ADMIN_INICIO = "/views/admin/InicioAdmin.fxml";
@@ -23,5 +23,6 @@ public class Paths {
     public static final String DOCENTE_REGISTRAR_LLEGADA = "/views/docente/RegistrarLlegada.fxml";
     public static final String CONSULTAR_ESTUDIANTE = "/views/docente/ConsultaEstudiante.fxml";
     public static final String INFORME = "/views/docente/Informe.fxml";
+    public static final String CONSULTAR_GRADO = "/views/docente/ConsultarGrado.fxml";
 
 }

@@ -40,6 +40,7 @@ public class InicioAdminController {
         Extras.textoBienvenida(txtBienvenida);
         mostrarCantidadEstudiantes();
         mostrarCantidadDocentes();
+        mostrarCantidadInformes();
     }
 
     private void mostrarCantidadDocentes(){
@@ -51,6 +52,11 @@ public class InicioAdminController {
     private void mostrarCantidadEstudiantes(){
         int cantidadEstudiantes = estudiantesDAO.cantidadEstudiantes();
         txtEstuRegistrado.setText("Total: " + cantidadEstudiantes);
+    }
+
+    private void mostrarCantidadInformes(){
+        int cantidadInformes = usuariosDAO.totalInformes();
+        txtInformeRegistrado.setText("Total: " + cantidadInformes);
     }
 
 }

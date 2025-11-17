@@ -149,4 +149,60 @@ public class UsuariosDAO {
         return false;
     }
 
+    public boolean registrarInforme(int idDocente){
+        String query = "UPDATE usuarios SET INFORMES = INFORMES+1 WHERE ID = ?";
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, idDocente);
+            int filasAfectadas = ps.executeUpdate();
+            return filasAfectadas > 0;
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: "+e.getMessage());
+            return false;
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+    }
+
+    public int cantidadInformes(int idDocente){
+        String query = "SELECT INFORMES FROM usuarios WHERE ID = ?";
+        int cantidad = 0;
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, idDocente);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                cantidad = rs.getInt("INFORMES");
+            }
+            return cantidad;
+
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: "+e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return cantidad;
+    }
+
+    public int totalInformes(){
+        String query = "SELECT SUM(INFORMES) AS 'TOTAL_INFORMES' FROM usuarios";
+        int total = 0;
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            if(rs.next()){
+                total = rs.getInt("TOTAL_INFORMES");
+            }
+            return total;
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: "+e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return total;
+    }
+
 }

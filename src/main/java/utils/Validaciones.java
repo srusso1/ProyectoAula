@@ -21,9 +21,6 @@ public class Validaciones {
             return false;
         }
 
-        // Eliminar espacios al inicio y final para una validación más precisa
-        texto = texto.trim();
-
         // Validar longitud máxima
         if (texto.length() > MAX_CARACTERES) {
             Alertas.mostrarError("El campo " + caso + " supera los " + MAX_CARACTERES + " caracteres permitidos");
@@ -55,9 +52,6 @@ public class Validaciones {
             Alertas.mostrarError("Es obligatorio ingresar la contraseña");
             return false;
         }
-
-        // Eliminar espacios al inicio y final para una validación más precisa
-        texto = texto.trim();
 
         // Validar longitud máxima
         if (texto.length() > MAX_CARACTERES) {

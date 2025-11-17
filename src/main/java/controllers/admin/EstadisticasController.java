@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
+import javafx.scene.control.Tooltip;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,27 +39,50 @@ public class EstadisticasController {
     private void configurarGraficoBarras(){
         // el eje X con los meses
         ejeX.setCategories(FXCollections.observableArrayList(
-                Arrays.asList("Enero", "Febrero", "Marzo", "Abril", "Mayo")));
-
+                Arrays.asList("Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre")));
+        ArrayList<String[]> registros = llegadasDAO.infoIngresosMes();
         // una serie por categoría
         XYChart.Series<String, Number> serieATiempo = new XYChart.Series<>();
         serieATiempo.setName("A tiempo");
-        serieATiempo.getData().add(new XYChart.Data<>("Enero", 1050));
-        serieATiempo.getData().add(new XYChart.Data<>("Febrero", 820));
-        serieATiempo.getData().add(new XYChart.Data<>("Marzo", 940));
-        serieATiempo.getData().add(new XYChart.Data<>("Abril", 980));
-        serieATiempo.getData().add(new XYChart.Data<>("Mayo", 974));
+        serieATiempo.getData().add(new XYChart.Data<>("Febrero", Integer.parseInt(registros.getFirst()[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Marzo", Integer.parseInt(registros.get(1)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Abril", Integer.parseInt(registros.get(2)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Mayo", Integer.parseInt(registros.get(3)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Junio", Integer.parseInt(registros.get(4)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Julio", Integer.parseInt(registros.get(5)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Agosto", Integer.parseInt(registros.get(6)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Septiembre", Integer.parseInt(registros.get(7)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Octubre", Integer.parseInt(registros.get(8)[1])));
+        serieATiempo.getData().add(new XYChart.Data<>("Noviembre", Integer.parseInt(registros.get(9)[1])));
 
         XYChart.Series<String, Number> serieTarde = new XYChart.Series<>();
         serieTarde.setName("Tarde");
-        serieTarde.getData().add(new XYChart.Data<>("Enero", 520));
-        serieTarde.getData().add(new XYChart.Data<>("Febrero", 480));
-        serieTarde.getData().add(new XYChart.Data<>("Marzo", 500));
-        serieTarde.getData().add(new XYChart.Data<>("Abril", 863));
-        serieTarde.getData().add(new XYChart.Data<>("Mayo", 793));
+        serieTarde.getData().add(new XYChart.Data<>("Febrero", Integer.parseInt(registros.getFirst()[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Marzo", Integer.parseInt(registros.get(1)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Abril", Integer.parseInt(registros.get(2)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Mayo", Integer.parseInt(registros.get(3)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Junio", Integer.parseInt(registros.get(4)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Julio", Integer.parseInt(registros.get(5)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Agosto", Integer.parseInt(registros.get(6)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Septiembre", Integer.parseInt(registros.get(7)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Octubre", Integer.parseInt(registros.get(8)[2])));
+        serieTarde.getData().add(new XYChart.Data<>("Noviembre", Integer.parseInt(registros.get(9)[2])));
 
         // agrego los datos al gráfico
         graficoBarraMes.getData().addAll(serieATiempo, serieTarde);
+
+        for (XYChart.Series<String, Number> serie : graficoBarraMes.getData()) {
+            for (XYChart.Data<String, Number> data : serie.getData()) {
+                Tooltip tooltip = new Tooltip(
+                        serie.getName() + ": " + data.getYValue().intValue()
+                );
+                Tooltip.install(data.getNode(), tooltip);
+
+                // Opcional: mejora visual (para que el tooltip aparezca más rápido)
+                tooltip.setShowDelay(Duration.millis(100));
+            }
+        }
+
 
     }
 

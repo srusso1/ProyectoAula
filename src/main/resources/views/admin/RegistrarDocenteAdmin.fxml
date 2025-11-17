@@ -41,7 +41,7 @@
                         <Insets top="10.0" />
                      </VBox.margin>
                   </Separator>
-                  <Label alignment="CENTER" contentDisplay="CENTER" text="Es obligatorio digitar todos los campos, el usuario y contraseña seran los requeridos al ingresar al software" wrapText="true" VBox.vgrow="ALWAYS">
+                  <Label alignment="CENTER" contentDisplay="CENTER" text="Es obligatorio digitar todos los campos, avise al docente para que complete el registro con su identificación" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
                         <Font name="System Italic" size="20.0" />
                      </font>

@@ -48,7 +48,7 @@
                                 </Button>
                             </children>
                         </HBox>
-                            <Label fx:id="lbInstrucciones" alignment="CENTER" style="-fx-text-fill: #607d8b; -fx-font-size: 13px; -fx-font-style: italic;" text="Escribe la identificación del estudiante y obtén un informe con el detalle de sus llegadas." wrapText="true">
+                            <Label fx:id="lbInstrucciones" alignment="CENTER" style="-fx-text-fill: #607d8b; -fx-font-size: 13px; -fx-font-style: italic;" text="Ingresa la identificación del estudiante para generar su informe de ingresos" wrapText="true">
                                         </Label>
                         <VBox alignment="CENTER" prefHeight="159.0" prefWidth="690.0">
                             <children>

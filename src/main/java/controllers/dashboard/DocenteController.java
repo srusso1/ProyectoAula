@@ -23,7 +23,7 @@ public class DocenteController {
 
     @FXML
     void ClickVerCurso(ActionEvent event) {
-
+        VistaManager.cargarVista(Paths.CONSULTAR_GRADO, rootPane);
     }
 
     @FXML

@@ -52,7 +52,6 @@ public class Docente extends Usuario{
     @Override
     public String toString() {
         return  "> Nombre: " + nombre + "\n" +
-                "> Apellido: " + apellido + "\n" +
-                "> Rol: " + rol;
+                "> Apellido: " + apellido + "\n";
     }
 }

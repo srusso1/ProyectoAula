@@ -10,3 +10,12 @@
     -fx-text-fill: #607d8b;
     -fx-font-style: italic;
 }
+/* Barra de ingreso a tiempo */
+.default-color0.chart-bar {
+    -fx-bar-fill: #1eaa04;
+}
+
+/* Barra de ingreso tarde */
+.default-color1.chart-bar {
+    -fx-bar-fill: #e74c3c;
+}

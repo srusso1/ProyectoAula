@@ -4,6 +4,7 @@ import model.Docente;
 import model.Estudiante;
 import org.sqlite.SQLiteConnection;
 import utils.Alertas;
+import utils.infoGrado;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -91,4 +92,64 @@ public class LlegadasDAO {
         }
         return infoLlegadas;
     }
+
+    public ArrayList<String[]> infoIngresosMes(){
+        ArrayList<String[]> infoIngresosMes = new ArrayList<>();
+        String query = "SELECT CASE SUBSTR(FECHA, 4, 2) WHEN '02' THEN 'FEBRERO' WHEN '03' THEN 'MARZO' WHEN '04' THEN 'ABRIL' " +
+                "WHEN '05' THEN 'MAYO' WHEN '06' THEN 'JUNIO' WHEN '07' THEN 'JULIO' WHEN '08' THEN 'AGOSTO' WHEN '09' THEN 'SEPTIEMBRE' " +
+                "WHEN '10' THEN 'OCTUBRE' WHEN '11' THEN 'NOVIEMBRE' END AS MES, " +
+                "SUM(CASE WHEN ESTADO = 1 THEN 1 ELSE 0 END) AS INGRESOS_TIEMPO, " +
+                "SUM(CASE WHEN ESTADO = 0 THEN 1 ELSE 0 END) AS INGRESOS_TARDE " +
+                "FROM llegadas GROUP BY MES ORDER BY SUBSTR(FECHA, 4, 2)";
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ResultSet rs = ps.executeQuery();
+            while(rs.next()){
+                String[] info = new String[3];
+                info[0] = rs.getString("MES");
+                info[1] = rs.getString("INGRESOS_TIEMPO");
+                info[2] = rs.getString("INGRESOS_TARDE");
+                infoIngresosMes.add(info);
+            }
+            return infoIngresosMes;
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: " + e.getMessage());
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return null;
+    }
+
+    public ArrayList<infoGrado> infoConsultaGrados(int grado){
+        ArrayList<infoGrado> lista = new ArrayList<>();
+        String query = "SELECT e.NOMBRE || ' ' || e.APELLIDO AS 'NOMBRE COMPLETO', e.GRADO, l.FECHA, " +
+                "CASE(ESTADO) WHEN 0 THEN 'Ingreso a tiempo' WHEN 1 THEN 'Ingreso tarde' END AS 'ESTADO', l.INFO " +
+                "FROM estudiantes e LEFT JOIN llegadas l ON e.ID = l.ID_ESTUDIANTE WHERE e.GRADO = ?";
+
+        try{
+            Connection conexion = ConexionSQLite.conectar();
+            PreparedStatement ps = conexion.prepareStatement(query);
+            ps.setInt(1, grado);
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                lista.add(new infoGrado(
+                        rs.getString("NOMBRE COMPLETO"),
+                        rs.getString("GRADO"),
+                        rs.getString("FECHA"),
+                        rs.getString("ESTADO"),
+                        rs.getString("INFO")
+                ));
+            }
+            return lista;
+
+        } catch (SQLException e) {
+            Alertas.mostrarError("Error SQL: " + e.getMessage());
+        } finally {
+            ConexionSQLite.cerrarConexion();
+        }
+        return null;
+    }
+
 }

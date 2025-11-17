@@ -2,6 +2,7 @@ package controllers.docente;
 
 import application.App;
 import data.EstudiantesDAO;
+import data.UsuariosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import model.Estudiante;
 import model.Informes;
+import model.Usuario;
 import utils.Alertas;
 import utils.Extras;
 import utils.Validaciones;
@@ -36,6 +38,7 @@ public class InformeController {
 
     Estudiante estudiante;
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
+    UsuariosDAO usuariosDAO = new UsuariosDAO();
     Informes informes;
 
     @FXML
@@ -93,6 +96,8 @@ public class InformeController {
         informes = new Informes(fechaHoy, estudiante, nombreEncargado, infoLlegadas);
 
         if(Informes.generarInforme()){
+            int idDocente = App.usuarioLogueado.getID();
+            usuariosDAO.registrarInforme(idDocente);
             Alertas.mostrarExito("Informe generado correctamente. Revise la carpeta de informes.");
         }
 

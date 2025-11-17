@@ -70,7 +70,7 @@
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="10.0" styleClass="containerInfo">
                            <children>
-                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Informes registrados">
+                              <Label alignment="CENTER" style="-fx-font-weight: bold;" text="Informes generados">
                                  <font>
                                     <Font size="16.0" />
                                  </font>

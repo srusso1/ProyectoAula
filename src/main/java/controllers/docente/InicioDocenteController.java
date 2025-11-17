@@ -2,6 +2,7 @@ package controllers.docente;
 
 import application.App;
 import data.LlegadasDAO;
+import data.UsuariosDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
@@ -22,11 +23,14 @@ public class InicioDocenteController {
     @FXML
     private Label totalLlegadas;
 
+    @FXML
+    private Label totalInformes;
 
     @FXML
     private Label totalTardes;
 
     LlegadasDAO llegadasDAO = new LlegadasDAO();
+    UsuariosDAO usuariosDAO = new UsuariosDAO();
 
     @FXML
     void initialize(){
@@ -37,7 +41,9 @@ public class InicioDocenteController {
     }
 
     private void asignarConteo(){
-        totalLlegadas.setText("Total: " + llegadasDAO.conteoLlegadas(App.usuarioLogueado.getID(), 0));
-        totalTardes.setText("Total: " + llegadasDAO.conteoLlegadas(App.usuarioLogueado.getID(), 1));
+        int idDocente = App.usuarioLogueado.getID();
+        totalLlegadas.setText("Total: " + llegadasDAO.conteoLlegadas(idDocente, 0));
+        totalTardes.setText("Total: " + llegadasDAO.conteoLlegadas(idDocente, 1));
+        totalInformes.setText("Total: " + usuariosDAO.cantidadInformes(idDocente));
     }
 }
