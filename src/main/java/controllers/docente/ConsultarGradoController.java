@@ -9,7 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import utils.Alertas;
+import utils.Transiciones;
 import utils.infoGrado;
 
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class ConsultarGradoController {
 
     @FXML
     private TableView<infoGrado> tabla;
+
+    @FXML
+    private VBox contenedor;
 
     @FXML
     private TableColumn<infoGrado, String> colNombre;
@@ -73,6 +78,7 @@ public class ConsultarGradoController {
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
 
         ocultarElementos();
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
     private void ocultarElementos(){

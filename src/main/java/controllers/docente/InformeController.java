@@ -9,11 +9,13 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import model.Estudiante;
 import model.Informes;
 import model.Usuario;
 import utils.Alertas;
 import utils.Extras;
+import utils.Transiciones;
 import utils.Validaciones;
 
 import java.util.ArrayList;
@@ -23,6 +25,9 @@ public class InformeController {
 
     @FXML
     private HBox contenedorEstudiante;
+
+    @FXML
+    private VBox contenedor;
 
     @FXML
     private Label infoEstu;
@@ -54,6 +59,7 @@ public class InformeController {
     @FXML
     void initialize() {
         ocultarElementos();
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
     private void buscarEstudiante(){

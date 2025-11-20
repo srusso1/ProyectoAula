@@ -14,7 +14,7 @@ public class Informes {
     private static String fecha, nombreEncargado;
     private static Estudiante estudiante;
     private static ArrayList<String[]> infoLlegadas;
-    private static int llegadasTarde = 0;
+    private static int llegadasTarde;
 
     public Informes(){
 
@@ -25,7 +25,7 @@ public class Informes {
         this.estudiante = estudiante;
         this.nombreEncargado = nombreEncargado;
         this.infoLlegadas = infoLlegadas;
-
+        llegadasTarde = 0;
         for(int i=0; i<infoLlegadas.size(); i++){
             if (infoLlegadas.get(i)[2].equals("Ingreso tarde")){
                 setLlegadasTarde(getLlegadasTarde() + 1);
