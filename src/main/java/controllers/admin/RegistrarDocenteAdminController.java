@@ -4,8 +4,10 @@ import data.UsuariosDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import model.Docente;
 import utils.Alertas;
+import utils.Transiciones;
 import utils.Validaciones;
 
 public class RegistrarDocenteAdminController {
@@ -18,6 +20,9 @@ public class RegistrarDocenteAdminController {
 
     @FXML
     private TextField txtNombre;
+
+    @FXML
+    private VBox contenedor;
 
     @FXML
     void clickRegistrarDocente(ActionEvent event) {
@@ -63,6 +68,11 @@ public class RegistrarDocenteAdminController {
         txtNombre.clear();
         txtApellido.clear();
         txtID.clear();
+    }
+
+    @FXML
+    void initialize(){
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
 }

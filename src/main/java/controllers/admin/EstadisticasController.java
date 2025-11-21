@@ -7,7 +7,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.Tooltip;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import utils.Transiciones;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -26,6 +28,9 @@ public class EstadisticasController {
     @FXML
     private NumberAxis ejeY;
 
+    @FXML
+    private VBox contenedor;
+
     LlegadasDAO llegadasDAO = new LlegadasDAO();
 
     private final ArrayList<Integer> infoLlegadas = llegadasDAO.infoIngresosGrado();
@@ -34,6 +39,7 @@ public class EstadisticasController {
     public void initialize() {
         configurarGraficoTorta();
         configurarGraficoBarras();
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
     private void configurarGraficoBarras(){

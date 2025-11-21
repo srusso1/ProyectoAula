@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
@@ -15,6 +16,7 @@ import model.Estudiante;
 import utils.Alertas;
 import utils.Extras;
 import utils.Paths;
+import utils.Transiciones;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -58,6 +60,9 @@ public class ConfiguracionController {
     @FXML
     private Button btnBorrarLista;
 
+    @FXML
+    private VBox contenedor;
+
     private ArrayList<Estudiante> estudiantes = new ArrayList<>();
     ConfigDAO configDAO = new ConfigDAO();
     EstudiantesDAO estudiantesDAO = new  EstudiantesDAO();
@@ -68,6 +73,7 @@ public class ConfiguracionController {
         mostrarHora();
         mostrarRutaActual();
         ocultarElementos();
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
     @FXML

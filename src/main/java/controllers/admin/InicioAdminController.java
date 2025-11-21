@@ -6,7 +6,9 @@ import data.EstudiantesDAO;
 import data.UsuariosDAO;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import utils.Extras;
+import utils.Transiciones;
 
 
 import java.time.LocalDate;
@@ -31,6 +33,9 @@ public class InicioAdminController {
     @FXML
     private Label txtInformeRegistrado;
 
+    @FXML
+    private VBox contenedor;
+
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
     UsuariosDAO usuariosDAO = new UsuariosDAO();
 
@@ -41,6 +46,7 @@ public class InicioAdminController {
         mostrarCantidadEstudiantes();
         mostrarCantidadDocentes();
         mostrarCantidadInformes();
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
     private void mostrarCantidadDocentes(){

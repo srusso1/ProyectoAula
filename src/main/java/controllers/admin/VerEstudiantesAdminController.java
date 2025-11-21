@@ -5,7 +5,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.VBox;
 import model.Estudiante;
+import utils.Transiciones;
 
 import java.util.ArrayList;
 
@@ -27,6 +29,9 @@ public class VerEstudiantesAdminController {
     private TableColumn<Estudiante, Long> identificacion;
 
     @FXML
+    private VBox contenedor;
+
+    @FXML
     private TableView<Estudiante> tabla;
     static EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
 
@@ -40,6 +45,8 @@ public class VerEstudiantesAdminController {
         grado.setCellValueFactory(new PropertyValueFactory<>("grado"));
         llegadas.setCellValueFactory(new PropertyValueFactory<>("llegadas"));
         tabla.getItems().setAll(estudiantes);
+
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
 }

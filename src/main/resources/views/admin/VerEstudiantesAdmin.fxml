@@ -16,7 +16,7 @@
    <children>
       <StackPane layoutX="336.0" layoutY="195.0" prefHeight="550.0" prefWidth="800.0" styleClass="container" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <VBox fx:id="contenedor" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
                <children>
                   <HBox alignment="CENTER" prefHeight="82.0" prefWidth="739.0" spacing="50.0">
                      <children>

@@ -12,7 +12,7 @@
    <children>
       <StackPane layoutX="315.0" layoutY="204.0" prefHeight="550.0" prefWidth="800.0" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
          <children>
-            <VBox spacing="25.0" styleClass="bgInicio">
+            <VBox fx:id="contenedor" spacing="25.0" styleClass="bgInicio">
                <children>
                   <Label style="-fx-text-fill: #1E1E2F;" text="🏠 Inicio Administrador">
                      <font>

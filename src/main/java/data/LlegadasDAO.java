@@ -98,8 +98,8 @@ public class LlegadasDAO {
         String query = "SELECT CASE SUBSTR(FECHA, 4, 2) WHEN '02' THEN 'FEBRERO' WHEN '03' THEN 'MARZO' WHEN '04' THEN 'ABRIL' " +
                 "WHEN '05' THEN 'MAYO' WHEN '06' THEN 'JUNIO' WHEN '07' THEN 'JULIO' WHEN '08' THEN 'AGOSTO' WHEN '09' THEN 'SEPTIEMBRE' " +
                 "WHEN '10' THEN 'OCTUBRE' WHEN '11' THEN 'NOVIEMBRE' END AS MES, " +
-                "SUM(CASE WHEN ESTADO = 1 THEN 1 ELSE 0 END) AS INGRESOS_TIEMPO, " +
-                "SUM(CASE WHEN ESTADO = 0 THEN 1 ELSE 0 END) AS INGRESOS_TARDE " +
+                "SUM(CASE WHEN ESTADO = 0 THEN 1 ELSE 0 END) AS INGRESOS_TIEMPO, " +
+                "SUM(CASE WHEN ESTADO = 1 THEN 1 ELSE 0 END) AS INGRESOS_TARDE " +
                 "FROM llegadas GROUP BY MES ORDER BY SUBSTR(FECHA, 4, 2)";
         try{
             Connection conexion = ConexionSQLite.conectar();

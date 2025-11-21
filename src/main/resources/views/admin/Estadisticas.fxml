@@ -19,7 +19,7 @@
    <children>
       <StackPane layoutX="344.0" layoutY="207.0" prefHeight="150.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
          <children>
-            <VBox spacing="20.0" StackPane.alignment="CENTER">
+            <VBox fx:id="contenedor" spacing="20.0" StackPane.alignment="CENTER">
                <children>
                   <HBox alignment="CENTER_LEFT" spacing="20.0">
                      <children>
@@ -40,7 +40,7 @@
                      <children>
                         <VBox spacing="10.0">
                            <children>
-                              <PieChart fx:id="graficoTorta" title="Ingresos tarde por grado" />
+                              <PieChart fx:id="graficoTorta" title="Total de ingresos tarde por grado" />
                               <Label styleClass="textoTip" text="Tip: (Cantidad de ingresos tarde -  % en el 100%)" wrapText="true" />
                            </children>
                         </VBox>

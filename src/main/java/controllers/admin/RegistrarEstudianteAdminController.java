@@ -6,8 +6,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import model.Estudiante;
 import utils.Alertas;
+import utils.Transiciones;
 import utils.Validaciones;
 
 import java.io.IOException;
@@ -25,6 +27,9 @@ public class RegistrarEstudianteAdminController {
 
     @FXML
     private TextField txtNombre;
+
+    @FXML
+    private VBox contenedor;
 
     @FXML
     void clickRegistrarEstudiante(ActionEvent event) throws IOException {
@@ -90,6 +95,7 @@ public class RegistrarEstudianteAdminController {
     @FXML
     void initialize(){
         comboBox.setItems(FXCollections.observableArrayList(6,7,8,9,10,11));
+        Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
     }
 
 }
