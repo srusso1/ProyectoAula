@@ -123,9 +123,10 @@ public class LlegadasDAO {
 
     public ArrayList<infoGrado> infoConsultaGrados(int grado){
         ArrayList<infoGrado> lista = new ArrayList<>();
-        String query = "SELECT e.NOMBRE || ' ' || e.APELLIDO AS 'NOMBRE COMPLETO', e.GRADO, l.FECHA, " +
-                "CASE(ESTADO) WHEN 0 THEN 'Ingreso a tiempo' WHEN 1 THEN 'Ingreso tarde' END AS 'ESTADO', l.INFO " +
-                "FROM estudiantes e LEFT JOIN llegadas l ON e.ID = l.ID_ESTUDIANTE WHERE e.GRADO = ?";
+        String query = "SELECT e.NOMBRE || ' ' || e.APELLIDO AS 'NOMBRE COMPLETO', " +
+                "e.GRADO, COUNT(l.FECHA) AS 'REGISTROS', SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END) AS 'INGRESOS_TARDE', " +
+                "CASE WHEN SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END) > 0 THEN 'Presenta ' || SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END) || ' ingresos tarde' " +
+                "ELSE 'No tiene ingresos tarde' END AS 'INFO' FROM estudiantes e LEFT JOIN llegadas l ON e.ID = l.ID_ESTUDIANTE WHERE e.GRADO = ? GROUP BY e.ID";
 
         try{
             Connection conexion = ConexionSQLite.conectar();
@@ -134,13 +135,13 @@ public class LlegadasDAO {
             ResultSet rs = ps.executeQuery();
 
             while(rs.next()){
-                lista.add(new infoGrado(
-                        rs.getString("NOMBRE COMPLETO"),
-                        rs.getString("GRADO"),
-                        rs.getString("FECHA"),
-                        rs.getString("ESTADO"),
-                        rs.getString("INFO")
-                ));
+                String nombre = rs.getString("NOMBRE COMPLETO");
+                String gradoEstudiante = rs.getString("GRADO");
+                String registros = rs.getString("REGISTROS");
+                String infoIngresos = rs.getString("INGRESOS_TARDE");
+                String info = rs.getString("INFO");
+
+                lista.add(new infoGrado(nombre, gradoEstudiante, registros, infoIngresos, info));
             }
             return lista;
 

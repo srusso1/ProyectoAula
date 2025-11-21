@@ -34,16 +34,13 @@ public class ConsultarGradoController {
     private TableColumn<infoGrado, String> colGrado;
 
     @FXML
-    private TableColumn<infoGrado, String> colFecha;
+    private TableColumn<infoGrado, String> colRegistros;
 
     @FXML
-    private TableColumn<infoGrado, String> colEstado;
+    private TableColumn<infoGrado, String> colIngresosTarde;
 
     @FXML
     private TableColumn<infoGrado, String> colInfo;
-
-    @FXML
-    private Label infoIngresos;
 
     LlegadasDAO llegadasDAO = new LlegadasDAO();
 
@@ -59,7 +56,6 @@ public class ConsultarGradoController {
 
         if(resultados != null){
             tabla.setItems(FXCollections.observableArrayList(resultados));
-            infoIngresos.setText("> Total de ingresos registrados: " + resultados.size());
             mostrarElementos();
 
         }
@@ -70,12 +66,13 @@ public class ConsultarGradoController {
     void initialize() {
 
         comboBox.setItems(FXCollections.observableArrayList(6,7,8,9,10,11));
-
+        tabla.setPlaceholder(new Label("No hay estudiantes en este grado"));
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colGrado.setCellValueFactory(new PropertyValueFactory<>("grado"));
-        colFecha.setCellValueFactory(new PropertyValueFactory<>("fecha"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
+        colRegistros.setCellValueFactory(new PropertyValueFactory<>("registros"));
+        colIngresosTarde.setCellValueFactory(new PropertyValueFactory<>("ingresosTarde"));
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
+
 
         ocultarElementos();
         Transiciones.cargarDesdeLado(contenedor, 1, 0, 1, -90, 0);
@@ -84,18 +81,11 @@ public class ConsultarGradoController {
     private void ocultarElementos(){
         tabla.setVisible(false);
         tabla.setManaged(false);
-
-        infoIngresos.setVisible(false);
-        infoIngresos.setManaged(false);
     }
 
     private void mostrarElementos(){
         tabla.setVisible(true);
         tabla.setManaged(true);
-
-        infoIngresos.setVisible(true);
-        infoIngresos.setManaged(true);
-
     }
 
 

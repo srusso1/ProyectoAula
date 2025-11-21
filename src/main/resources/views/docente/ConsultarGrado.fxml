@@ -46,20 +46,15 @@
                   <TableView fx:id="tabla" prefHeight="293.0" prefWidth="690.0" styleClass="tabla" VBox.vgrow="ALWAYS">
                     <columns>
                       <TableColumn fx:id="colNombre" prefWidth="141.0" text="NOMBRE" />
-                      <TableColumn fx:id="colGrado" prefWidth="100.0" text="GRADO" />
-                        <TableColumn fx:id="colFecha" prefWidth="96.0" text="FECHA" />
-                        <TableColumn fx:id="colEstado" prefWidth="113.0" text="ESTADO" />
-                        <TableColumn fx:id="colInfo" prefWidth="240.0" text="INFORMACIÓN" />
+                      <TableColumn fx:id="colGrado" prefWidth="73.0" text="GRADO" />
+                        <TableColumn fx:id="colRegistros" prefWidth="139.0" text="INGRESOS" />
+                        <TableColumn fx:id="colIngresosTarde" prefWidth="147.0" text="INGRESOS TARDE" />
+                        <TableColumn fx:id="colInfo" prefWidth="190.0" text="INFORMACIÓN" />
                     </columns>
                      <columnResizePolicy>
                         <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                      </columnResizePolicy>
                   </TableView>
-                  <Label fx:id="infoIngresos" text="&gt; Total de ingresos registrados: N">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Label>
                </children>
                <padding>
                   <Insets left="50.0" top="50.0" />

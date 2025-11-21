@@ -2,6 +2,7 @@ package controllers.dashboard;
 
 
 import application.App;
+import data.LlegadasDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import utils.Paths;
 import utils.VistaManager;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class AdminController {
@@ -22,6 +24,8 @@ public class AdminController {
 
     @FXML
     private BorderPane rootPane;
+
+    LlegadasDAO llegadasDAO = new LlegadasDAO();
 
     @FXML
     void clickInicio(ActionEvent event) {
@@ -58,7 +62,14 @@ public class AdminController {
 
     @FXML
     void clickInformes(ActionEvent event) {
-        VistaManager.cargarVista(Paths.ESTADISTICAS, rootPane);
+        ArrayList<String[]> registros = llegadasDAO.infoIngresosMes();
+        if(registros.isEmpty()){
+            Alertas.mostrarWarning("Aún no se han registrado ingresos, no hay estadísticas disponibles");
+        }else{
+            VistaManager.cargarVista(Paths.ESTADISTICAS, rootPane);
+        }
+
+
     }
 
     @FXML

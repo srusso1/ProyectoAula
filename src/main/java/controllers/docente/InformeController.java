@@ -90,11 +90,13 @@ public class InformeController {
         if(infoLlegadas.isEmpty()){
             Alertas.mostrarWarning("El estudiante " + estudiante.getNombreCompleto() + " no tiene ningún ingreso registrado, no se puede generar el informe.");
             ocultarElementos();
+            limpiarCampos();
             return;
         }else{
             if(!Objects.equals(infoLlegadas.getFirst()[2], "Ingreso tarde")){
                 Alertas.mostrarWarning("El estudiante " + estudiante.getNombreCompleto() + " no tiene ningún ingreso tarde registrado, no se puede generar el informe.");
                 ocultarElementos();
+                limpiarCampos();
                 return;
             }
         }

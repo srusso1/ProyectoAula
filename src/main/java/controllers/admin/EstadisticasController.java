@@ -9,6 +9,7 @@ import javafx.scene.chart.*;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
+import utils.Alertas;
 import utils.Transiciones;
 
 import java.util.ArrayList;
@@ -43,7 +44,6 @@ public class EstadisticasController {
     }
 
     private void configurarGraficoBarras(){
-        // el eje X con los meses
         ejeX.setCategories(FXCollections.observableArrayList(
                 Arrays.asList("Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre")));
         ArrayList<String[]> registros = llegadasDAO.infoIngresosMes();
