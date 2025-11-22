@@ -62,13 +62,13 @@ public class AdminController {
 
     @FXML
     void clickInformes(ActionEvent event) {
-        ArrayList<String[]> registros = llegadasDAO.infoIngresosMes();
-        if(registros.isEmpty()){
+        int ingresos = llegadasDAO.totalIngresos();
+
+        if (ingresos == 0) {
             Alertas.mostrarWarning("Aún no se han registrado ingresos, no hay estadísticas disponibles");
-        }else{
+        } else {
             VistaManager.cargarVista(Paths.ESTADISTICAS, rootPane);
         }
-
 
     }
 

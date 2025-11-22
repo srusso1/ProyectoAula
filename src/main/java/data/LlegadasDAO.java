@@ -93,14 +93,29 @@ public class LlegadasDAO {
         return infoLlegadas;
     }
 
+    public int totalIngresos() {
+        String query = "SELECT COUNT(*) FROM llegadas";
+        try (Connection conexion = ConexionSQLite.conectar();
+             PreparedStatement ps = conexion.prepareStatement(query);
+             ResultSet rs = ps.executeQuery()) {
+
+            return rs.getInt(1);
+        } catch (Exception e) {
+            Alertas.mostrarError("Error SQL: " + e.getMessage());
+            return 0;
+        }finally {
+            ConexionSQLite.cerrarConexion();
+        }
+    }
+
+
     public ArrayList<String[]> infoIngresosMes(){
         ArrayList<String[]> infoIngresosMes = new ArrayList<>();
-        String query = "SELECT CASE SUBSTR(FECHA, 4, 2) WHEN '02' THEN 'FEBRERO' WHEN '03' THEN 'MARZO' WHEN '04' THEN 'ABRIL' " +
-                "WHEN '05' THEN 'MAYO' WHEN '06' THEN 'JUNIO' WHEN '07' THEN 'JULIO' WHEN '08' THEN 'AGOSTO' WHEN '09' THEN 'SEPTIEMBRE' " +
-                "WHEN '10' THEN 'OCTUBRE' WHEN '11' THEN 'NOVIEMBRE' END AS MES, " +
-                "SUM(CASE WHEN ESTADO = 0 THEN 1 ELSE 0 END) AS INGRESOS_TIEMPO, " +
-                "SUM(CASE WHEN ESTADO = 1 THEN 1 ELSE 0 END) AS INGRESOS_TARDE " +
-                "FROM llegadas GROUP BY MES ORDER BY SUBSTR(FECHA, 4, 2)";
+        String query = "WITH MESES(M, NOMBRE) AS (VALUES ('02','FEBRERO'),('03','MARZO'),('04','ABRIL'),('05','MAYO'),('06','JUNIO'),('07','JULIO'),('08','AGOSTO')," +
+                "('09','SEPTIEMBRE'),('10','OCTUBRE'),('11','NOVIEMBRE')) " +
+                "SELECT MESES.NOMBRE AS MES, COALESCE(SUM(CASE WHEN l.ESTADO = 0 THEN 1 ELSE 0 END), 0) AS INGRESOS_TIEMPO, " +
+                "COALESCE(SUM(CASE WHEN l.ESTADO = 1 THEN 1 ELSE 0 END), 0) AS INGRESOS_TARDE " +
+                "FROM MESES LEFT JOIN llegadas l ON SUBSTR(l.FECHA, 4, 2) = MESES.M GROUP BY MESES.M, MESES.NOMBRE ORDER BY MESES.M";
         try{
             Connection conexion = ConexionSQLite.conectar();
             PreparedStatement ps = conexion.prepareStatement(query);
