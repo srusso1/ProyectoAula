@@ -256,11 +256,15 @@ public class ConfiguracionController {
 
     private void configurarSpinner(){
         SpinnerValueFactory<LocalTime> valueFactory = new SpinnerValueFactory<LocalTime>() {
+            private final int STEP_MINUTES = 5;
+            private final LocalTime MIN_TIME = LocalTime.of(6, 0);
+            private final LocalTime MAX_TIME = LocalTime.of(14, 0);
+
             {
                 // Formato de 12 horas con AM/PM
-                setConverter(new javafx.util.StringConverter<LocalTime>() {
-                    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
 
+                setConverter(new javafx.util.StringConverter<LocalTime>() {
                     @Override
                     public String toString(LocalTime time) {
                         return (time != null) ? time.format(formatter) : "";
@@ -268,33 +272,35 @@ public class ConfiguracionController {
 
                     @Override
                     public LocalTime fromString(String string) {
-                        try {
-                            return LocalTime.parse(string.toUpperCase(), formatter);
-                        } catch (Exception e) {
-                            return getValue(); // Mantiene el valor actual si hay error
-                        }
+                        return getValue(); // Mantiene el valor actual (no permite edición manual)
                     }
                 });
 
                 setValue(LocalTime.of(8, 0)); // Valor inicial
             }
 
-            private final int STEP_MINUTES = 5;
-            private final LocalTime MIN_TIME = LocalTime.of(6, 0);
-            private final LocalTime MAX_TIME = LocalTime.of(23, 55);
-
+            @Override
             public void increment(int steps) {
                 LocalTime newTime = getValue().plusMinutes(steps * STEP_MINUTES);
-                if (newTime.isAfter(MAX_TIME)) newTime = MIN_TIME;
-                setValue(newTime);
+                if (newTime.isAfter(MAX_TIME)) {
+                    setValue(MAX_TIME); // Se detiene en el máximo (2:00 PM)
+                } else {
+                    setValue(newTime);
+                }
             }
 
+            @Override
             public void decrement(int steps) {
                 LocalTime newTime = getValue().minusMinutes(steps * STEP_MINUTES);
-                if (newTime.isBefore(MIN_TIME)) newTime = MAX_TIME;
-                setValue(newTime);
+                if (newTime.isBefore(MIN_TIME)) {
+                    setValue(MIN_TIME); // Se detiene en el mínimo (6:00 AM)
+                } else {
+                    setValue(newTime);
+                }
             }
         };
+
         spinnerHora.setValueFactory(valueFactory);
+        spinnerHora.setEditable(false); // No permitir edición manual
     }
 }

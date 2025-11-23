@@ -1,11 +1,18 @@
 package data;
 
+import utils.Alertas;
+
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class ConexionSQLite {
-    private static final String URL = "jdbc:sqlite:src/main/resources/data/DATABASE.db";
+
+    static String appData = System.getenv("LOCALAPPDATA");
+    static String dbFolder = appData + "\\ProyectoAula";  // cambia el nombre de tu programa
+    static String dbPath = dbFolder + "\\database.db";
+    private static final String URL = "jdbc:sqlite:" + dbPath;
     private static Connection conexion = null;
     public static Connection conectar(){
         try{
@@ -13,7 +20,7 @@ public class ConexionSQLite {
             conexion = DriverManager.getConnection(URL);
             System.out.println("Conexion establecida con la base de datos - " + metodoLlamador);
         } catch (SQLException e) {
-            System.err.println("Error al conectar la base de datos: " + e.getMessage());
+            Alertas.mostrarError("Error al conectar a la base de datos: " + e.getMessage());
         }
         return conexion;
     }
@@ -27,7 +34,7 @@ public class ConexionSQLite {
                 System.out.println("Se cerro la conexion a la base de datos - " + metodoLlamador);
             }
         } catch (SQLException e) {
-            System.err.println("Error al cerrar la base de datos: " + e.getMessage());
+            Alertas.mostrarError("Error al cerrar la conexion a la base de datos: " + e.getMessage());
         }
     }
 
