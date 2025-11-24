@@ -3,12 +3,14 @@ package application;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.Usuario;
 import utils.Alertas;
 import utils.Paths;
 
 import java.io.IOException;
+import java.util.Objects;
 
 public class App extends Application {
 
@@ -27,6 +29,10 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.LOGIN_VIEW));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
+        stage.setTitle("Sistema de Control de Asistencia Escolar");
+        stage.getIcons().add(new Image(
+                Objects.requireNonNull(getClass().getResourceAsStream("/images/logoAzulNaranjaSinFondo.png"))
+        ));
         stage.show();
     }
 

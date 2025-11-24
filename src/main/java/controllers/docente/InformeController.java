@@ -103,7 +103,7 @@ public class InformeController {
 
         informes = new Informes(fechaHoy, estudiante, nombreEncargado, infoLlegadas);
 
-        if(Informes.generarInforme()){
+        if(informes.generarInforme()){
             int idDocente = App.usuarioLogueado.getID();
             usuariosDAO.registrarInforme(idDocente);
             Alertas.mostrarExito("Informe generado correctamente. Revise la carpeta de informes.");

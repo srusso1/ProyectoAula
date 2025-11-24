@@ -11,10 +11,10 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 
 public class Informes {
-    private static String fecha, nombreEncargado;
-    private static Estudiante estudiante;
-    private static ArrayList<String[]> infoLlegadas;
-    private static int llegadasTarde;
+    private String fecha, nombreEncargado;
+    private Estudiante estudiante;
+    private ArrayList<String[]> infoLlegadas;
+    private int llegadasTarde;
 
     public Informes(){
 
@@ -33,7 +33,7 @@ public class Informes {
         }
     }
 
-    public static String plantilla(){
+    public String plantilla(){
         return ("-".repeat(100) + "\n" +
                 "\t\t\t\t INFORME REGISTRO DE INGRESOS" + "\n" +
                 "-".repeat(100) + "\n\n" +
@@ -53,7 +53,7 @@ public class Informes {
                 "¡La participación y el apoyo en casa son fundamentales para el éxito académico tu hijo!");
     }
 
-    public static StringBuilder infoLlegadas(){
+    public StringBuilder infoLlegadas(){
         StringBuilder info = new StringBuilder();
         for (String[] infoLlegada : infoLlegadas) {
             if (infoLlegada[2].equals("Ingreso tarde")) {
@@ -64,10 +64,9 @@ public class Informes {
         return info;
     }
 
-    public static boolean generarInforme(){
+    public boolean generarInforme(){
         ConfigDAO configDAO = new ConfigDAO();
         String ruta = configDAO.obtenerRutaArchivo();
-        System.out.println(ruta);
         if(ruta == null){
             Alertas.mostrarWarning("Aún no se ha configurado una carpeta para guardar los informes. Por favor, contacta un administrador.");
             return false;
