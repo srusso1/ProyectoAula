@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.scene.control.Spinner?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@../../css/admin/ConfiguracionStyle.css" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.ConfiguracionController">
+<AnchorPane prefHeight="600.0" prefWidth="900.0" styleClass="background" stylesheets="@../../css/admin/ConfiguracionStyle.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.admin.ConfiguracionController">
 
     <children>
         <StackPane layoutX="350.0" layoutY="203.0" prefHeight="150.0" prefWidth="200.0" styleClass="bgInicio" AnchorPane.bottomAnchor="40.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="40.0">
@@ -30,7 +20,7 @@
                                         <Image url="@../../images/Config.png" />
                                     </image>
                                 </ImageView>
-                                <Label styleClass="titulo-config" text="Configuración general del software" />
+                                <Label styleClass="titulo-config" text="Configuración general de SCAE" />
                             </children>
                         </HBox>
 

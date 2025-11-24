@@ -10,8 +10,8 @@ import java.sql.SQLException;
 public class ConexionSQLite {
 
     static String appData = System.getenv("LOCALAPPDATA");
-    static String dbFolder = appData + "\\ProyectoAula";  // cambia el nombre de tu programa
-    static String dbPath = dbFolder + "\\database.db";
+    static String dbFolder = appData + "\\SCAE";
+    static String dbPath = dbFolder + "\\DATABASE.db";
     private static final String URL = "jdbc:sqlite:" + dbPath;
     private static Connection conexion = null;
     public static Connection conectar(){
