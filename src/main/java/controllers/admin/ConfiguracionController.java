@@ -109,11 +109,14 @@ public class ConfiguracionController {
 
     private void importarEstudiantes(){
         int exitos = 0;
+        int duplicados = 0;
+        ArrayList<String> listaDuplicados = new ArrayList<>();
+
         for (Estudiante estudiante : estudiantes) {
             Estudiante estu = estudiantesDAO.buscarEstudiante(estudiante.getIdentificacion());
-            if(estu!=null){
-                Alertas.mostrarWarning("La identificacion " + estu.getIdentificacion() + " ya corresponde al estudiante " + estu.getNombreCompleto() +
-                        ". Fue omitido en el registro");
+            if(estu != null){
+                duplicados++;
+                listaDuplicados.add(estudiante.getNombreCompleto() + " (ID: " + estudiante.getIdentificacion() + ")");
             }else{
                 if(estudiantesDAO.registrarEstudiante(estudiante)){
                     exitos++;
@@ -121,8 +124,30 @@ public class ConfiguracionController {
             }
         }
 
+        StringBuilder mensaje = new StringBuilder();
+
         if(exitos > 0){
-            Alertas.mostrarExito("Se importaron correctamente " + exitos + " estudiantes desde el archivo CSV.");
+            mensaje.append("Se importaron correctamente ").append(exitos).append(" estudiante(s).\n\n");
+        }
+
+        if(duplicados > 0){
+            mensaje.append(duplicados).append(" estudiante(s) fueron omitidos por estar duplicados:\n");
+            for (int i = 0; i < Math.min(listaDuplicados.size(), 5); i++) {
+                mensaje.append("  • ").append(listaDuplicados.get(i)).append("\n");
+            }
+            if(listaDuplicados.size() > 5){
+                mensaje.append("  ... y ").append(listaDuplicados.size() - 5).append(" más.\n");
+            }
+        }
+
+        if(exitos == 0 && duplicados == 0){
+            Alertas.mostrarError("No se pudo importar ningún estudiante.");
+        }else if(exitos > 0 && duplicados == 0){
+            Alertas.mostrarExito(mensaje.toString());
+        }else if(exitos == 0 && duplicados > 0){
+            Alertas.mostrarWarning(mensaje.toString());
+        }else{
+            Alertas.mostrarInfo(mensaje.toString());
         }
     }
 
