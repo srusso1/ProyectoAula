@@ -95,7 +95,13 @@ public class InformeController {
             limpiarCampos();
             return;
         }else{
-            if(!Objects.equals(infoLlegadas.getFirst()[2], "Ingreso tarde")){
+            int totalIngresosTarde = 0;
+            for(String[] fila : infoLlegadas){
+                if(fila[2].equals("Ingreso tarde")){
+                    totalIngresosTarde++;
+                }
+            }
+            if(totalIngresosTarde == 0){
                 Alertas.mostrarWarning("El estudiante " + estudiante.getNombreCompleto() + " no tiene ningún ingreso tarde registrado, no se puede generar el informe.");
                 ocultarElementos();
                 limpiarCampos();
