@@ -283,7 +283,7 @@ public class ConfiguracionController {
         SpinnerValueFactory<LocalTime> valueFactory = new SpinnerValueFactory<LocalTime>() {
             private final int STEP_MINUTES = 5;
             private final LocalTime MIN_TIME = LocalTime.of(6, 0);
-            private final LocalTime MAX_TIME = LocalTime.of(14, 0);
+            private final LocalTime MAX_TIME = LocalTime.of(15, 0);
 
             {
                 // Formato de 12 horas con AM/PM

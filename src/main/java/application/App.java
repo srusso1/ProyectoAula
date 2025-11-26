@@ -16,6 +16,8 @@ public class App extends Application {
 
     private static Stage primaryStage;
 
+    private static final String VERSION = "v1.0.7";
+
     public static Usuario usuarioLogueado = null;
 
     public static void main(String[] args) {
@@ -29,7 +31,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource(Paths.LOGIN_VIEW));
         Scene scene = new Scene(loader.load());
         stage.setScene(scene);
-        stage.setTitle("Sistema de Control de Asistencia Escolar");
+        stage.setTitle("Sistema de Control de Asistencia Escolar - " + VERSION);
         stage.getIcons().add(new Image(
                 Objects.requireNonNull(getClass().getResourceAsStream("/images/logoAzulNaranjaSinFondo.png"))
         ));

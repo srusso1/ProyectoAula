@@ -48,7 +48,6 @@
                       <TableColumn fx:id="colNombre" prefWidth="141.0" text="NOMBRE" />
                       <TableColumn fx:id="colGrado" prefWidth="73.0" text="GRADO" />
                         <TableColumn fx:id="colRegistros" prefWidth="139.0" text="INGRESOS" />
-                        <TableColumn fx:id="colIngresosTarde" prefWidth="147.0" text="INGRESOS TARDE" />
                         <TableColumn fx:id="colInfo" prefWidth="190.0" text="INFORMACIÓN" />
                     </columns>
                      <columnResizePolicy>

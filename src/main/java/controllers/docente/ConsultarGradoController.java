@@ -37,9 +37,6 @@ public class ConsultarGradoController {
     private TableColumn<infoGrado, String> colRegistros;
 
     @FXML
-    private TableColumn<infoGrado, String> colIngresosTarde;
-
-    @FXML
     private TableColumn<infoGrado, String> colInfo;
 
     LlegadasDAO llegadasDAO = new LlegadasDAO();
@@ -70,7 +67,6 @@ public class ConsultarGradoController {
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colGrado.setCellValueFactory(new PropertyValueFactory<>("grado"));
         colRegistros.setCellValueFactory(new PropertyValueFactory<>("registros"));
-        colIngresosTarde.setCellValueFactory(new PropertyValueFactory<>("ingresosTarde"));
         colInfo.setCellValueFactory(new PropertyValueFactory<>("info"));
 
 

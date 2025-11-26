@@ -160,7 +160,7 @@ public class RegistrarLlegadaController {
             btnRegistrar.setDisable(true);
             btnBuscar.setDisable(true);
             txtID.setDisable(true);
-            PauseTransition pausa = new PauseTransition(Duration.seconds(5));
+            PauseTransition pausa = new PauseTransition(Duration.seconds(1.5));
             pausa.setOnFinished(event -> {
                 ocultarElementos();
                 limpiarID();
