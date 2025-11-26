@@ -61,7 +61,7 @@ public class AdminController {
     }
 
     @FXML
-    void clickInformes(ActionEvent event) {
+    void clickEstadisticas(ActionEvent event) {
         int ingresos = llegadasDAO.totalIngresos();
 
         if (ingresos == 0) {

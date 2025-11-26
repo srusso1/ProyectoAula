@@ -1,6 +1,7 @@
 package controllers.docente;
 
 import application.App;
+import data.ConfigDAO;
 import data.EstudiantesDAO;
 import data.UsuariosDAO;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class InformeController {
     EstudiantesDAO estudiantesDAO = new EstudiantesDAO();
     UsuariosDAO usuariosDAO = new UsuariosDAO();
     Informes informes;
+    ConfigDAO configDAO = new ConfigDAO();
 
     @FXML
     void clickBuscar(ActionEvent event) {
@@ -107,6 +109,7 @@ public class InformeController {
             int idDocente = App.usuarioLogueado.getID();
             usuariosDAO.registrarInforme(idDocente);
             Alertas.mostrarExito("Informe generado correctamente. Revise la carpeta de informes.");
+            Extras.abrirCarpeta(configDAO.obtenerRutaArchivo());
         }
 
         ocultarElementos();

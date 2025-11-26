@@ -4,6 +4,8 @@ import application.App;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 
+import java.awt.*;
+import java.io.File;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -39,7 +41,20 @@ public class Extras {
 
     public static String formatoHora(LocalTime hora) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a", Locale.ENGLISH);
-        return hora.format(formatter).replace(".", ""); // asegura "8:30 AM" sin puntos
+        return hora.format(formatter).replace(".", "");
+    }
+
+    public static void abrirCarpeta(String ruta) {
+        try {
+            File carpeta = new File(ruta);
+            if (carpeta.exists()) {
+                Desktop.getDesktop().open(carpeta);
+            } else {
+                Alertas.mostrarError("La carpeta no existe.");
+            }
+        } catch (Exception e) {
+            Alertas.mostrarError("Error al abrir la carpeta: " + e.getMessage());
+        }
     }
 
 }
